@@ -14,7 +14,7 @@
     "test": "./node_modules/.bin/mocha"
   },
   "author": "aardvarks",
-  "license": "ISC",
+  "license": "GPL-2.0",
   "dependencies": {
     "express": "^4.13.4",
     "jade": "^1.11.0",
