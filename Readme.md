@@ -8,6 +8,7 @@ You can test out the site with this URL: http://itsback.at/upanddown.herokuapp.c
 
 [![Build Status](https://img.shields.io/travis/aardvarks/itsback.at.svg?style=flat-square)](https://travis-ci.org/aardvarks/itsback.at)
 [![Build Status](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
+[Coverage](https://codecov.io/github/aardvarks/itsback.at)
 ## Setup
 
 ```
