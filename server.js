@@ -1,20 +1,15 @@
 var express = require('express')
   , logger = require('morgan')
   , app = express()
-  , template = require('jade').compileFile(__dirname + '/source/templates/homepage.jade')
+  , addRoutes = require('./routes')
+  , attachSocket = require('./sockets')
+  , port = process.env.PORT || 3000
 
 app.use(logger('dev'))
 app.use(express.static(__dirname + '/static'))
+addRoutes(app)
 
-app.get('/', function (req, res, next) {
-  try {
-    var html = template({ title: 'Home' })
-    res.send(html)
-  } catch (e) {
-    next(e)
-  }
-})
-
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Listening on http://localhost:' + (process.env.PORT || 3000))
+var server = app.listen(port, () => {
+  console.log(`Listening on http://localhost: ${port}`)
+  attachSocket(server)
 })

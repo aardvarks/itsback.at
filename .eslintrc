@@ -13,6 +13,10 @@
     "after": true,
     "afterEach": true,
     "history": true,
-    "$": true,
+    "$": true
+  },
+
+  "rules": {
+    "one-var": 0
   }
 }
