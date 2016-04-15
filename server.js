@@ -10,6 +10,6 @@ app.use(express.static(__dirname + '/static'))
 addRoutes(app)
 
 var server = app.listen(port, () => {
-  console.log(`Listening on http://localhost: ${port}`)
+  console.log(`Listening on http://localhost:${port}`)
   attachSocket(server)
 })
