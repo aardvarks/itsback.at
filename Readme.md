@@ -13,6 +13,7 @@ You can test out the site with this URL: http://itsback.at/upanddown.herokuapp.c
 ## Setup
 
 ```
+nave usemain 4.3.1
 npm install
 npm run build
 npm start
