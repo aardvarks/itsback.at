@@ -62,3 +62,5 @@ Icon
 .apdisk
 
 static/css
+
+static/js/bundle.js

@@ -4,12 +4,12 @@ const path = require('path')
 
 module.exports = {
   entry: [
-    './browser/index'
+    './source/js/index'
   ]
 , output: {
-    path: path.join(__dirname, 'public', 'js')
+    path: path.join(__dirname, 'static', 'js')
   , filename: 'bundle.js'
-  , publicPath: '/public/js/'
+  , publicPath: '/static/js/'
   }
 , module: {
     loaders: [
@@ -18,7 +18,7 @@ module.exports = {
       , query: {
           presets: [ 'es2015' ]
         }
-      , include: path.join(__dirname, 'browser')
+      , include: path.join(__dirname, 'source/js')
       }
     ]
   }
