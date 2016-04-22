@@ -22,7 +22,10 @@
 
 .domain-form__input
   width 100%
-  padding-right 50px
+  padding-right 45px
+
+  +width-min($mq--tablet)
+    padding-right 60px
 
   &.not-empty
     border-color $color--white
@@ -31,8 +34,12 @@
   position absolute
   top 0
   right 0
-  width 50px
-  height 100px
+  width 40px
+  height 70px
+
+  +width-min($mq--tablet)
+    width 50px
+    height 100px
 
   .button
     position absolute
@@ -62,14 +69,11 @@
       fill $color--white
 
 .icon--link
-  left 4px
-
   .domain-form__input:valid ~ .domain-form__action &
     opacity 0
     transform translateY(-50px)
 
 .icon--arrow
-  left 9px
   opacity 0
   transform translateY(50px)
 

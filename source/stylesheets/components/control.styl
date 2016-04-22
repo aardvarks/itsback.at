@@ -8,10 +8,14 @@
 
 .control--text
   padding 15px 0
-  border-bottom 4px solid $color--blue-grey--50
-  font-size 60px
+  border-bottom 3px solid $color--blue-grey--50
+  font-size 30px
   color $color--white
   transition border-color 0.2s
+
+  +width-min($mq--tablet)
+    font-size 60px
+    border-width 4px
 
   &:focus
     border-color $color--white
