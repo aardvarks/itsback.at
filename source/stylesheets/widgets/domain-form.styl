@@ -4,9 +4,17 @@
 //
 
 .domain-form
+  position fixed
+  top 50%
+  left 0
+  width 100%
   display flex
   justify-content center
-  width 100%
+  transform translateY(-50%)
+  padding 0 20px
+
+  +width-min($mq--tablet)
+    padding 0 40px
 
 .domain-form__inner
   position relative
