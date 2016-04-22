@@ -1,13 +1,11 @@
 extend default
 
 block content
-  main.content
-
-    section.section.section--active.js-domain-section
+    section.section.section--active.js-domain-section      
       form.domain-form(onsubmit='submit()')
         label.domain-form__inner
-          input.domain-form__input.control.control--text.js-url(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' title='Invalid URL')
-          .domain-form__action
+          input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' title='Invalid URL')
+          .domain-form__action.js-url-submit
             .icon.icon--link
               include ../assets/images/link.svg
             .icon.icon--arrow
@@ -17,27 +15,29 @@ block content
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')
   
   script.
-    var $input = $('.js-url')
-      , $value = $input.val()
+    var $urlInput = $('.js-url-input')
+      , $urlInputValue = $input.val()
+      , $submitButton = $('.js-url-submit')
       
     valueCheck()
     
     $input.bind("input propertychange", function () {
-      $value = $input.val()
+      $urlInputValue = $urlInput.val()
       
       valueCheck()
     })
     
     function valueCheck() {
-      if ($value === '') {
+      if ($urlInputValue === '') {
         $input.removeClass('not-empty')
       } else {
         $input.addClass('not-empty')
       }
     }
     
-    function submit() {
-      var domainSection = $('.js-domain-section')
+    function submit(e) {
+      e.preventDefault()
       
+      var domainSection = $('.js-domain-section')
       domainSection.addClass('section--active')
     }

@@ -4,7 +4,12 @@ html
     meta(charset='utf-8')
     meta(name='viewport', content='initial-scale=1')
     meta(name='description', content='Check the status of a website')
-    title It's back
+    title itsback.at | Check a site's status
     link(rel='stylesheet', href='/css/index.css')
   body
-    block content
+    main.content
+      include layout/header
+    
+      block content
+      
+      include layout/footer
