@@ -1,0 +1,30 @@
+.control
+  border 0
+  background none
+  font-family $base--font-family
+  letter-spacing 1px
+
+  &:focus
+    outline 0
+
+.control--text
+  padding 15px 0
+  border-bottom 4px solid $color--blue-grey--50
+  font-size 60px
+  color $color--white
+  transition border-color 0.2s
+
+  &:focus
+    border-color $color--white
+
+  &::-webkit-input-placeholder
+    color $color--blue-grey--50
+
+  &:-moz-placeholder
+    color $color--blue-grey--50
+
+  &::-moz-placeholder
+    color $color--blue-grey--50
+
+  &:-ms-input-placeholder
+    color $color--blue-grey--50

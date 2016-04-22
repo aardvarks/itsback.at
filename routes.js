@@ -1,4 +1,4 @@
-var template = require('jade').compileFile(__dirname + '/source/templates/homepage.jade')
+var template = require('jade').compileFile(__dirname + '/source/templates/index.jade')
 
 module.exports = (app) => {
   app.get('/', (req, res, next) => {

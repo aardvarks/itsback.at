@@ -1,0 +1,116 @@
+//
+// BASE STYLES
+// ===========
+// Like a reset, but not. Rather than including and ignoring, change the content
+// of this file to suit your current project.
+//
+// Typographic styles should live in typography.styl
+// Form and Table styles live in their respective stylesheets
+//
+
+
+*, *:before, *:after
+  box-sizing border-box
+
+//
+// SPACING
+// Unset margins and padding, the reset for specific elements
+//
+
+article, aside, details, figcaption, figure, footer, header, main, menu, nav, section
+  display block
+  margin 0
+  padding 0
+
+html, body, p, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form,
+fieldset, legend, input, button, textarea, blockquote, th, td
+  margin 0
+  padding 0
+
+h1, h2, h3, h4, h5, h6
+  margin-bottom $base--spacing
+
+p, pre, ul, ol, dl, hr, legend, address, table, blockquote
+  margin-bottom $base--spacing
+
+
+//
+// BASIC ELEMENTS
+//
+
+html, body
+  height 100%
+
+body
+  font-family $base--font-family
+
+
+//
+// LISTS
+// Lists should be styled with bullets/numbers and margin by default.
+//
+
+li
+  list-style-position outside
+  margin-left 2em
+
+  ol, ul
+    margin-bottom 0
+
+  ul &
+    list-style-type disc
+
+    li
+      list-style-type circle
+
+  ol &
+    list-style-type decimal
+
+    li
+      list-style-type lower-roman
+
+// Unstyle navigation lists
+nav
+  ul, ol
+    margin-bottom 0
+  li
+    list-style none
+    margin-left 0
+
+
+//
+// MEDIA
+//
+
+img
+  border 0
+
+img, object
+  vertical-align bottom
+
+// Responsive images
+img
+  max-width 100%
+  width auto
+  height auto
+
+
+//
+// PRE-FORMATTED TEXT / CODE BLOCKS
+//
+
+pre
+  code
+    display block
+
+
+//
+// MISC
+//
+
+hr
+  display block
+  height 1px
+  width 100%
+  border 0
+  background-color $color--grey
