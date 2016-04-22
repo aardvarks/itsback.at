@@ -12,28 +12,5 @@ block content
         //- input.button(type='submit' value='Get status')
   
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')
-  
-  script.
-    var $urlInput = $('.js-url-input')
-      , $urlInputValue = $urlInput.val()
-      , $urlSubmit = $('.js-url-submit')
-      , $body = $('body')
-          
-    valueCheck()
-    
-    $urlInput.bind("input propertychange", function () {
-      $urlInputValue = $urlInput.val()
-      valueCheck()
-    })
-    
-    function valueCheck() {
-      if ($urlInputValue === '') {
-        $urlInput.removeClass('not-empty')
-      } else {
-        $urlInput.addClass('not-empty')
-      }
-    }
-
-    $urlSubmit.on('click', function () {
-      $body.addClass('is-submitted')
-    })
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js')
+  script(src='/js/bundle.js')
