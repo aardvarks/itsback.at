@@ -9,19 +9,20 @@ block content
           include ../assets/images/link.svg
         .icon.icon--arrow
           include ../assets/images/arrow.svg
-        input.button(type='submit' value='Get status')
+        //- input.button(type='submit' value='Get status')
   
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')
   
   script.
     var $urlInput = $('.js-url-input')
       , $urlInputValue = $urlInput.val()
+      , $urlSubmit = $('.js-url-submit')
+      , $body = $('body')
           
     valueCheck()
     
     $urlInput.bind("input propertychange", function () {
       $urlInputValue = $urlInput.val()
-      
       valueCheck()
     })
     
@@ -32,3 +33,7 @@ block content
         $urlInput.addClass('not-empty')
       }
     }
+
+    $urlSubmit.on('click', function () {
+      $body.addClass('is-submitted')
+    })

@@ -11,11 +11,15 @@
   border-bottom 3px solid $color--blue-grey--50
   font-size 30px
   color $color--white
-  transition border-color 0.2s
+  transition border-color 0.2s, font-size 0.5s
 
   +width-min($mq--tablet)
     font-size 60px
     border-width 4px
+
+  .is-submitted &
+    font-size 30px
+    border-width 3px
 
   &:focus
     border-color $color--white
