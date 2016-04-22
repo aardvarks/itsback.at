@@ -1,27 +1,26 @@
 extend default
 
 block content
-    section.section.section--active.js-domain-section      
-      form.domain-form(onsubmit='submit()')
-        label.domain-form__inner
-          input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' title='Invalid URL')
-          .domain-form__action.js-url-submit
-            .icon.icon--link
-              include ../assets/images/link.svg
-            .icon.icon--arrow
-              include ../assets/images/arrow.svg
-            input.button(type='submit' value='Get status')
+  section.section.section--active.js-domain-section      
+    form.domain-form(onsubmit='submit()')
+      label.domain-form__inner
+        input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' title='Invalid URL')
+        .domain-form__action.js-url-submit
+          .icon.icon--link
+            include ../assets/images/link.svg
+          .icon.icon--arrow
+            include ../assets/images/arrow.svg
+          input.button(type='submit' value='Get status')
   
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')
   
   script.
     var $urlInput = $('.js-url-input')
-      , $urlInputValue = $input.val()
-      , $submitButton = $('.js-url-submit')
-      
+      , $urlInputValue = $urlInput.val()
+          
     valueCheck()
     
-    $input.bind("input propertychange", function () {
+    $urlInput.bind("input propertychange", function () {
       $urlInputValue = $urlInput.val()
       
       valueCheck()
@@ -29,15 +28,8 @@ block content
     
     function valueCheck() {
       if ($urlInputValue === '') {
-        $input.removeClass('not-empty')
+        $urlInput.removeClass('not-empty')
       } else {
-        $input.addClass('not-empty')
+        $urlInput.addClass('not-empty')
       }
-    }
-    
-    function submit(e) {
-      e.preventDefault()
-      
-      var domainSection = $('.js-domain-section')
-      domainSection.addClass('section--active')
     }
