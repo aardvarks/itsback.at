@@ -16,7 +16,7 @@ class Monitor {
   }
 
   addClient (client, callback) {
-    var exists = this.clients.some((c) => { c.id === client })
+    var exists = this.clients.some((c) => { return c.id === client })
     if (!exists) {
       this.clients.push({ id: client, callback: callback })
       if (!this.started) this.start()
@@ -24,7 +24,7 @@ class Monitor {
   }
 
   removeClient (client) {
-    this.clients = this.clients.filter((c) => { c.id === client })
+    this.clients = this.clients.filter((c) => { return c.id !== client })
     if (!this.clients.length) this.stop()
   }
 

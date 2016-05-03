@@ -2,7 +2,11 @@ var assert = require('assert')
   , Monitor = require('../monitor')
 
 describe('Monitor class', function () {
-  var monitor = new Monitor('tuna.com')
+  var monitor
+
+  beforeEach(function () {
+    monitor = new Monitor('tuna.com')
+  })
 
   describe('constructor', function () {
     it('should take domain as an argument', function (done) {
@@ -24,5 +28,27 @@ describe('Monitor class', function () {
       done()
     })
   })
-})
 
+  describe('addClient', function () {
+    it('should add a client', function (done) {
+      monitor.addClient('clientId', function () { return 'tuna' })
+      monitor.addClient('clientId', function () { return 'tuna' })
+      assert.equal(monitor.clients[0].id, 'clientId', 'clientId not set correctly')
+      assert.equal(monitor.clients[0].callback(), 'tuna', 'callback not set correctly')
+      assert.equal(monitor.clients.length, 1, 'duplicate client allowed')
+      assert.equal(monitor.started, true, 'monitor not started')
+      done()
+    })
+  })
+
+  describe('removeClient', function () {
+    it('should remove a client', function (done) {
+      monitor.addClient('clientId', function () { return 'tuna' })
+      monitor.removeClient('clientId')
+      assert.equal(monitor.clients.length, 0, 'client not removed')
+      assert.equal(monitor.started, false, 'monitor not stopped')
+      done()
+    })
+  })
+
+})
