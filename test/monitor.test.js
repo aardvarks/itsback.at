@@ -51,4 +51,26 @@ describe('Monitor class', function () {
     })
   })
 
+  describe('checkDomain', function () {
+    var expected
+
+    function makeCallback (done) {
+      return function (up) {
+        assert.equal(up, expected, 'incorrect result')
+        done()
+      }
+    }
+
+    it('should check a live domain', function (done) {
+      expected = true
+      monitor.addClient('clientId', makeCallback(done))
+    })
+
+    it('should check a dead domain', function (done) {
+      monitor.domain = 'madeupsitethatdoesnotexist.com'
+      expected = false
+      monitor.addClient('clientId', makeCallback(done))
+    })
+  })
+
 })
