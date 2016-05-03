@@ -5,12 +5,12 @@ describe('Monitor class', function () {
   var monitor
 
   beforeEach(function () {
-    monitor = new Monitor('tuna.com')
+    monitor = new Monitor('google.com')
   })
 
   describe('constructor', function () {
     it('should take domain as an argument', function (done) {
-      assert.equal(monitor.domain, 'tuna.com', 'domain not set correctly')
+      assert.equal(monitor.domain, 'google.com', 'domain not set correctly')
       done()
     })
   })
@@ -52,25 +52,33 @@ describe('Monitor class', function () {
   })
 
   describe('checkDomain', function () {
-    var expected
 
-    function makeCallback (done) {
+    beforeEach(function () {
+      monitor.tick = 500
+    })
+
+    function makeCallback (expected, second, done) {
       return function (up) {
         assert.equal(up, expected, 'incorrect result')
-        done()
+        if (second) {
+          monitor.removeClient('clientId')
+          done()
+        }
+        second = true
       }
     }
 
-    it('should check a live domain', function (done) {
-      expected = true
-      monitor.addClient('clientId', makeCallback(done))
+    describe('up', function () {
+      it('should check a live domain', function (done) {
+        monitor.addClient('clientId', makeCallback(true, false, done))
+      })
     })
 
-    it('should check a dead domain', function (done) {
-      monitor.domain = 'madeupsitethatdoesnotexist.com'
-      expected = false
-      monitor.addClient('clientId', makeCallback(done))
+    describe('down', function () {
+      it('should check a dead domain', function (done) {
+        monitor.domain = 'madeupsitethatdoesnotexist.com'
+        monitor.addClient('clientId', makeCallback(false, false, done))
+      })
     })
   })
-
 })
