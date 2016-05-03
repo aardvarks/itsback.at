@@ -7,9 +7,10 @@
   "scripts": {
     "build-css": "stylus source/stylesheets/index.styl -o static/css",
     "watch-css": "stylus source/stylesheets/index.styl -o static/css -w",
+    "build-js": "./node_modules/.bin/webpack -p",
     "watch-js": "./node_modules/.bin/webpack --watch",
     "clean": "rm -rf static/css && mkdir -p static/css",
-    "build": "npm run clean && npm run build-css",
+    "build": "npm run clean && npm run build-css && npm run build-js",
     "watch": "npm run clean && npm run watch-css & npm run watch-js & nodemon server -e js,jade",
     "start": "node server",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/mocha",
