@@ -1,21 +1,22 @@
 var assert = require('assert')
   , Monitor = require('../monitor')
+  , noop = () => {}
 
-describe('Monitor class', function () {
+describe('Monitor class', () => {
   var monitor
 
-  beforeEach(function () {
+  beforeEach(() => {
     monitor = new Monitor('google.com')
   })
 
-  describe('constructor', function () {
+  describe('constructor', () => {
     it('should take domain as an argument', function (done) {
       assert.equal(monitor.domain, 'google.com', 'domain not set correctly')
       done()
     })
   })
 
-  describe('checkHealth', function () {
+  describe('checkHealth', () => {
     it('should return true for up false for down', function (done) {
       assert.equal(true, monitor.checkHealth(200), 'should be true')
       assert.equal(true, monitor.checkHealth(201), 'should be true')
@@ -29,21 +30,20 @@ describe('Monitor class', function () {
     })
   })
 
-  describe('addClient', function () {
+  describe('addClient', () => {
     it('should add a client', function (done) {
-      monitor.addClient('clientId', function () { return 'tuna' })
-      monitor.addClient('clientId', function () { return 'tuna' })
+      monitor.addClient('clientId', noop)
+      monitor.addClient('clientId', noop)
       assert.equal(monitor.clients[0].id, 'clientId', 'clientId not set correctly')
-      assert.equal(monitor.clients[0].callback(), 'tuna', 'callback not set correctly')
       assert.equal(monitor.clients.length, 1, 'duplicate client allowed')
       assert.equal(monitor.started, true, 'monitor not started')
       done()
     })
   })
 
-  describe('removeClient', function () {
+  describe('removeClient', () => {
     it('should remove a client', function (done) {
-      monitor.addClient('clientId', function () { return 'tuna' })
+      monitor.addClient('clientId', noop)
       monitor.removeClient('clientId')
       assert.equal(monitor.clients.length, 0, 'client not removed')
       assert.equal(monitor.started, false, 'monitor not stopped')
@@ -51,9 +51,9 @@ describe('Monitor class', function () {
     })
   })
 
-  describe('checkDomain', function () {
+  describe('checkDomain', () => {
 
-    beforeEach(function () {
+    beforeEach(() => {
       monitor.tick = 500
     })
 
@@ -68,13 +68,13 @@ describe('Monitor class', function () {
       }
     }
 
-    describe('up', function () {
+    describe('up', () => {
       it('should check a live domain', function (done) {
         monitor.addClient('clientId', makeCallback(true, false, done))
       })
     })
 
-    describe('down', function () {
+    describe('down', () => {
       it('should check a dead domain', function (done) {
         monitor.domain = 'madeupsitethatdoesnotexist.com'
         monitor.addClient('clientId', makeCallback(false, false, done))
