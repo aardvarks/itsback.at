@@ -24,7 +24,7 @@ npm run watch
 
 ## To do
 - [ ] Refactor code to ES6 and node 4
-- [ ] Setup Jade / Stylus
+- [x] Setup Jade / Stylus
 - [ ] Setup mongodb
 - [ ] Test whole URL, include path and port
 - [ ] Adjustable certainty (X successful attempts before declared up)

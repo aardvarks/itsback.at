@@ -11,7 +11,7 @@ class Monitor {
     this.tick = 5000
   }
 
-  upFinder (code) {
+  checkHealth (code) {
     return !!(code >= 200 && code <= 203)
   }
 
@@ -54,7 +54,7 @@ class Monitor {
     try {
       http.get(target, (res) => {
         res.on('data', () => {}) //  Do nothing with the data to free the socket.
-        var up = this.upFinder(res.statusCode)
+        var up = this.checkHealth(res.statusCode)
         clients.forEach((client) => { client.callback(up) })
       }).on('error', function () {
         clients.forEach((client) => { client.callback(false) })
