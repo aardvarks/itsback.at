@@ -62,7 +62,6 @@ Icon
 .apdisk
 
 assets/build/css
-
-assets/build/js/bundle.js
+assets/build/js
 
 *.swp
