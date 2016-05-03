@@ -4,7 +4,7 @@ This is a rebuild and completion of the [itsback.at](http://itsback.at) website.
 
 The idea is to create a replacement for [isup.me](http://isup.me), that will alert users when the status of a site changes. 
 
-You can test out the site with this URL: http://itsback.at/upanddown.herokuapp.com
+You can test out the site with this URL: http://alpha.itsback.at/upanddown.herokuapp.com
 
 [![Build Status](https://img.shields.io/travis/aardvarks/itsback.at.svg?style=flat-square)](https://travis-ci.org/aardvarks/itsback.at)
 [![Build Status](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
