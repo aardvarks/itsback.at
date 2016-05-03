@@ -63,7 +63,7 @@ module.exports = function () {
   }
 
   socket.on('result', function (data) {
-    console.log('Recieved: ' + JSON.stringify(data))
+    console.log('Received: ' + JSON.stringify(data))
     if (domainSubmitted === data.domain && result !== data.up && first === false) {
       if (notifications) {
         /* eslint-disable */
@@ -80,6 +80,16 @@ module.exports = function () {
     testDomain($('.js-url-input').val())
     first = true
     if (window.webkitNotifications) window.webkitNotifications.requestPermission()
+  })
+
+  $('.js-url-input').on('keydown', function (e) {
+    var code = e.keyCode || e.which
+    if (code === 13) {
+      e.preventDefault()
+      testDomain($('.js-url-input').val())
+      first = true
+      if (window.webkitNotifications) window.webkitNotifications.requestPermission()
+    }
   })
 
   $('#usePath').on('change', function () { usePath = this.checked })

@@ -23,3 +23,10 @@ function valueCheck () {
 $urlSubmit.on('click', function () {
   $body.addClass('is-submitted')
 })
+
+$urlInput.on('keydown', function (e) {
+  var code = e.keyCode || e.which
+  if (code === 13) {
+    $body.addClass('is-submitted')
+  }
+})
