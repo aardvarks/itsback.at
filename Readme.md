@@ -8,7 +8,7 @@ You can test out the site with this URL: http://alpha.itsback.at/upanddown.herok
 
 [![Build Status](https://img.shields.io/travis/aardvarks/itsback.at.svg?style=flat-square)](https://travis-ci.org/aardvarks/itsback.at)
 [![Build Status](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
-[![Build Status](https://img.shields.io/codecov/c/codecov/aardvarks/itsback.at.svg?style=flat-square)](https://codecov.io/github/aardvarks/itsback.at)
+[![Build Status](https://img.shields.io/codecov/c/github/aardvarks/itsback.at.svg?style=flat-square)](https://codecov.io/github/aardvarks/itsback.at)
 
 ## Setup
 
