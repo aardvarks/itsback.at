@@ -3,12 +3,12 @@ extend default
 block content
   form.domain-form(onsubmit='submit()')
     label.domain-form__inner
-      input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' title='Invalid URL')
+      input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' value=inputUrl title='Invalid URL')
       .domain-form__action.js-url-submit
         .icon.icon--link
-          include ../assets/images/link.svg
+          include ../../assets/build/images/link.svg
         .icon.icon--arrow
-          include ../assets/images/arrow.svg
+          include ../../assets/build/images/arrow.svg
         //- input.button(type='submit' value='Get status')
   div#result Result goes here
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')

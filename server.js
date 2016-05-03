@@ -4,9 +4,10 @@ var express = require('express')
   , addRoutes = require('./routes')
   , attachSocket = require('./sockets')
   , port = process.env.PORT || 3000
+  , path = require('path')
 
 app.use(logger('dev'))
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(path.join(__dirname, 'assets', 'build')))
 addRoutes(app)
 
 var server = app.listen(port, () => {
