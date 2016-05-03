@@ -52,7 +52,6 @@ describe('Monitor class', () => {
   })
 
   describe('checkDomain', () => {
-
     beforeEach(() => {
       monitor.tick = 500
     })
