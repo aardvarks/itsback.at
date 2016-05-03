@@ -11,12 +11,12 @@ class Monitor {
     this.tick = 5000
   }
 
-  upFinder (code) {
+  checkHealth (code) {
     return !!(code >= 200 && code <= 203)
   }
 
   addClient (client, callback) {
-    var exists = this.clients.some((c) => { c.id === client })
+    var exists = this.clients.some((c) => { return c.id === client })
     if (!exists) {
       this.clients.push({ id: client, callback: callback })
       if (!this.started) this.start()
@@ -24,7 +24,7 @@ class Monitor {
   }
 
   removeClient (client) {
-    this.clients = this.clients.filter((c) => { c.id === client })
+    this.clients = this.clients.filter((c) => { return c.id !== client })
     if (!this.clients.length) this.stop()
   }
 
@@ -54,7 +54,7 @@ class Monitor {
     try {
       http.get(target, (res) => {
         res.on('data', () => {}) //  Do nothing with the data to free the socket.
-        var up = this.upFinder(res.statusCode)
+        var up = this.checkHealth(res.statusCode)
         clients.forEach((client) => { client.callback(up) })
       }).on('error', function () {
         clients.forEach((client) => { client.callback(false) })

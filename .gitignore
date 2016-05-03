@@ -61,6 +61,8 @@ Icon
 .AppleDesktop
 .apdisk
 
-static/css
+assets/build/css
 
-static/js/bundle.js
+assets/build/js/bundle.js
+
+*.swp
