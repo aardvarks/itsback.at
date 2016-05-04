@@ -31,7 +31,7 @@ npm run watch
 - [ ] Display users watching domain feature
 - [ ] Report incorrect results 
 - [ ] Working animation
-- [ ] Desktop notitications
+- [x] Desktop notitications
 - [ ] 100% test coverage
 - [ ] JSON API
 - [ ] Plaintext (command line) API
