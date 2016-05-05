@@ -5,7 +5,7 @@ var socket = require('socket.io')
 
 module.exports = (server) => {
   var io = socket.listen(server)
-    , domains = {}
+    , domainClients = {}
 
   function valURL (inputUrl) {
     var testUrl = url.parse(inputUrl.domain)
@@ -17,8 +17,8 @@ module.exports = (server) => {
     socket.emit('id', {'id': socket.id})
 
     socket.on('disconnect', () => {
-      for (var i in domains) {
-        domains[i].removeClient(socket.id)
+      for (var i in domainClients) {
+        domainClients[i].removeClient(socket.id)
       }
     })
 
@@ -30,18 +30,20 @@ module.exports = (server) => {
     socket.on('domainSubmit', (data) => {
       var domain = valURL(data)
       if (domain == null) return
-      for (var i in domains) {
-        domains[i].removeClient(socket.id)
+      for (var i in domainClients) {
+        domainClients[i].removeClient(socket.id)
       }
 
-      if (!domains.hasOwnProperty(domain)) {
-        domains[domain] = new Monitor(domain)
-        domains[domain].start()
+      if (!domainClients.hasOwnProperty(domain)) {
+        domainClients[domain] = new Monitor(domain)
+        domainClients[domain].start()
       }
 
-      domains[domain].addClient(socket.id, (up) => {
+      domainClients[domain].addClient(socket.id, (up) => {
         socket.emit('result', { 'up': up, 'domain': domain })
       })
     })
   })
+
+  return domainClients
 }
