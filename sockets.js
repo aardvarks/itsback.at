@@ -27,7 +27,7 @@ module.exports = (server) => {
     socket.emit('id', {'id': socket.id})
 
     socket.on('domainValidate', (data) => {
-      socket.emit('clientDomain', { 'domain': findDomain(data) })
+      socket.emit('serverDomain', { 'domain': findDomain(data) })
     })
 
     socket.on('domainSubmit', (data) => {

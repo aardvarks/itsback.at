@@ -1,9 +1,10 @@
-class Notifications {
+class Notification {
   constructor (window) {
     this.window = window
     this.notifications = false
     this.first = true
     this.domain = ''
+    this.getPermissions()
   }
 
   refreshState () {
@@ -31,9 +32,9 @@ class Notifications {
   }
 
   notifyStatusChange (data, result) {
-    if (this.domain === data.domain && result !== data.up && this.first === false) {
+    if (this.domain === data.domain && result !== data.state && this.first === false) {
       if (this.notifications) {
-        let notificationMessage = this.domain + (data.up ? ' is back up!' : ' has gone down!')
+        let notificationMessage = this.domain + (data.state ? ' is back up!' : ' has gone down!')
         this.notification = new this.window.Notification(notificationMessage)
       }
     }
@@ -41,4 +42,4 @@ class Notifications {
   }
 }
 
-module.exports = Notifications
+module.exports = Notification
