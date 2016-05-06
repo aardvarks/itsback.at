@@ -24,8 +24,8 @@ module.exports = function () {
   })
 
   function testDomain (domain) {
-    socket.emit('domainVal', { 'domain': domain, 'path': usePath, 'id': sessionID })
-    socket.on('theDomain', function (data) {
+    socket.emit('domainValidate', { 'domain': domain, 'path': usePath, 'id': sessionID })
+    socket.on('clientDomain', function (data) {
       notifications.setDomain(data.domain)
     })
     result = null

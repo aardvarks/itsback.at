@@ -29,8 +29,8 @@ describe('Sockets', () => {
   })
 
   it('should vaildate domain', (done) => {
-    client.emit('domainVal', { domain: 'google.com/asdasd' })
-    client.on('theDomain', (data) => {
+    client.emit('domainValidate', { domain: 'google.com/asdasd' })
+    client.on('clientDomain', (data) => {
       assert.equal(data.domain, 'google.com', 'domain not found correctly')
       done()
     })
@@ -40,7 +40,7 @@ describe('Sockets', () => {
     client.emit('domainSubmit', { domain: 'google.com/asdasd' })
     client.on('result', (data) => {
       assert.equal(data.domain, 'google.com', 'domain not found correctly')
-      assert.equal(data.up, true, 'domain not found correctly')
+      assert.equal(data.state, true, 'domain not found correctly')
       done()
     })
   })
