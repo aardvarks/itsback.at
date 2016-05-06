@@ -1,5 +1,4 @@
 var $urlInput = $('.js-url-input')
-  , $urlInputValue = $urlInput.val()
   , $urlSubmit = $('.js-url-submit')
   , $body = $('body')
   , states =
@@ -11,85 +10,49 @@ var $urlInput = $('.js-url-input')
   , notification = new Notification(window)
   , Socket = require('./socket')
   , socket = new Socket(window.io)
-  , result = null
+  , Application = require('./application')
+  , application = new Application(document, socket, notification)
 
-/*** Event listeners***/
-
-$urlInput.bind('input propertychange', function () {
-  $urlInputValue = $urlInput.val()
-  valueCheck()
-})
-
-$('.js-url-submit').on('click', performFirstTest)
-
-if (window.location.pathname.substr(1).length) {
-  var path = window.location.pathname.substr(1).split('/')
-  $('#domain').val(path[0])
-  socket.testDomain(path[0])
+function updateResult (message) {
+  $('#result').fadeOut('fast', () => {
+    $('#result').html(message).fadeIn('fast')
+  })
 }
 
-/*** Event handlers ***/
+function enterPressed (e) {
+  var code = e.keyCode || e.which
+  return code === 13
+}
 
-$urlSubmit.on('click', function () {
+$urlInput.bind('input propertychange', () => {
+  var $urlInputValue = $urlInput.val()
+    , applyState = ($urlInputValue === '') ? 'removeClass' : 'addClass'
+  $urlInput[applyState]('not-empty')
+})
+
+$('.js-url-submit').on('click', application.performFirstTest)
+
+application.initialLoad((path) => {
+  if (path) $('#domain').val(path)
+})
+
+$urlSubmit.on('click', () => {
   $body.addClass('is-submitted')
 })
 
-$urlInput.on('keydown', function (e) {
-  var code = e.keyCode || e.which
-  if (code === 13) $body.addClass('is-submitted')
-})
-
-$body.on('itsback:change', function (event, data) {
-  processResult(data.state)
-  notification.notifyStatusChange(data, result)
-  $('#result').fadeOut('fast', function () {
-    $('#result').html((data.state ? states.success : states.fail)).fadeIn('fast')
-  })
-})
-
-$body.on('itsback:checking', function () {
-  $('#result').fadeOut('fast', function () {
-    $('#result').html(states.checking).fadeIn('fast')
-  })
-})
-
-$body.on('itsback:serverDomain', function (domain) {
-  notification.setDomain(domain)
-})
-
-$('.js-url-input').on('keydown', function (e) {
-  var code = e.keyCode || e.which
-  if (code === 13) performFirstTest(e)
-})
-
-/*** Helper Functions ***/
-
-function valueCheck () {
-  if ($urlInputValue === '') {
-    $urlInput.removeClass('not-empty')
-  } else {
-    $urlInput.addClass('not-empty')
+$urlInput.on('keydown', (e) => {
+  if (enterPressed(e)) {
+    $body.addClass('is-submitted')
+    application.performFirstTest(e)
   }
-}
+})
 
-function performFirstTest (e) {
-  e.preventDefault()
-  socket.testDomain($('.js-url-input').val())
-  notification.refreshState()
-  notification.requestPermission()
-}
+$body.on('itsback:change', (event, data) => {
+  application.processResult(data.state)
+  notification.notifyStatusChange(data, application.result)
+  updateResult(data.state ? states.success : states.fail)
+})
 
-function updateIcon (state) {
-  var link = document.createElement('link')
-  link.type = 'image/x-icon'
-  link.rel = 'shortcut icon'
-  link.href = '/assets/imgs/' + (state ? 'up' : 'down') + '.ico'
-  document.getElementsByTagName('head')[0].appendChild(link)
-}
+$body.on('itsback:checking', updateResult.bind(null, states.checking))
 
-function processResult (success) {
-  document.title = 'It\'s ' + (success ? 'back!' : 'down :(')
-  updateIcon(success)
-  if (result === success) return
-  result = success
-}
+$body.on('itsback:serverDomain', notification.setDomain)
