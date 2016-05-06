@@ -1,23 +1,25 @@
 'use strict'
 
-var MongoClient = require('mongodb')
-  , url = 'mongodb://localhost:27017/itsback'
-	, db
+const MongoClient = require('mongodb')
 
-MongoClient.connect(url, (err, database) => {
-  if (err) return console.log(err)
-  db = database
+class Database {
 
-	addReport('google.com', (err, data) => { console.log(data.value.domain) })
-	findReport('google.com', (err, data) => { console.log(data) })
-})
+  constructor (uri) {
+    this.uri = uri
+    this.db = {}
+    MongoClient.connect(uri, (err, db) => {
+      if (err) return console.log(err)
+      this.db = db
+    })
+  }
 
-function addReport (domain, cb) {
-	db.collection('domains').findAndModify({ domain: domain }, {}, { $inc: { reported: 1 } }, { new: true , upsert: true }, cb)
+  addReport (domain, cb) {
+    this.db.collection('domains').findAndModify({ domain: domain }, {}, { $inc: { reported: 1 } }, { new: true , upsert: true }, cb)
+  }
+
+  findReport (domain, cb) {
+    this.db.collection('domains').findOne({ domain: domain }, { _id: false, reported: true }, cb)
+  }
 }
 
-function findReport (domain, cb) {
-	db.collection('domains').findOne({ domain: domain }, { _id: false, reported: true }, cb)
-}
-
-
+module.exports = Database
