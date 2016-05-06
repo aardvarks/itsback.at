@@ -3,7 +3,7 @@ extend default
 block content
   form.domain-form(onsubmit='submit()')
     label.domain-form__inner
-      input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' value=inputUrl title='Invalid URL')
+      input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required autofocus pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' value=inputUrl title='Invalid URL')
       .domain-form__action.js-url-submit
         .icon.icon--link
           include ../../assets/build/images/link.svg
