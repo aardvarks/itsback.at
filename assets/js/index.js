@@ -56,7 +56,7 @@ $body.on('itsback:change', (event, data) => {
   if (data.watching === 1) {
     data.watching = 'You are the only one watching! Aren\'t you special :P'
   } else {
-    $('.js-watching').text(data.watching + 'people watching! You aren\'t alone! :D')
+    $('.js-watching').text(data.watching + ' people are watching! You aren\'t alone! :D')
   }
 
   console.log(data.reported)
