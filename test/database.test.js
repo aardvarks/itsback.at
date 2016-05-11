@@ -25,7 +25,7 @@ describe('Database', () => {
       })
       .then(database.findReport.bind(database, 'google.com'))
       .then((data) => {
-        assert.equal(data.reported, 1, 'incorrect number of reports')
+        assert.equal(data, 1, 'incorrect number of reports')
         done()
       })
       .catch((err) => {

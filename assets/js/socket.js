@@ -10,7 +10,7 @@ class Socket {
     })
 
     this.socket.on('reported', function (data) {
-      alert(data)
+      $('body').trigger('itsback:reported')
     })
 
     this.socket.on('result', function (data) {
@@ -27,7 +27,6 @@ class Socket {
     this.socket.emit('domainValidate', { 'domain': domain, 'id': this.clientId })
 
     this.socket.on('serverDomain', function (data) {
-      console.log(222, data)
       $('body').trigger('itsback:serverDomain', data.domain)
     })
 

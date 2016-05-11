@@ -34,7 +34,6 @@ $urlInput.bind('input propertychange', () => {
 $('.js-url-submit').on('click', application.performFirstTest)
 
 $('.js-report-domain').on('click', () => {
-  console.log('click')
   socket.reportDomain(serverDomain)
 })
 
@@ -54,6 +53,8 @@ $urlInput.on('keydown', (e) => {
 })
 
 $body.on('itsback:change', (event, data) => {
+  $('.js-watching').text('Watching: ' + data.watching)
+  $('.js-reported').text('Reported: ' + data.reported)
   application.processResult(data.state)
   notification.notifyStatusChange(data, application.result)
   updateResult(data.state ? states.success : states.fail)
@@ -61,9 +62,14 @@ $body.on('itsback:change', (event, data) => {
 
 $body.on('itsback:checking', updateResult.bind(null, states.checking))
 
-$body.on('itsback:serverDomain', function (event, domain) {
-  // Display report button.
-  console.log(111, domain)
+$('.js-report-domain').toggle()
+
+$body.on('itsback:reported', () => {
+  $('.js-report-domain').toggle()
+})
+
+$body.on('itsback:serverDomain', (event, domain) => {
+  $('.js-report-domain').toggle()
   serverDomain = domain
   notification.setDomain(domain)
 })

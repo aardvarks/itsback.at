@@ -42,7 +42,7 @@ class Database {
       , { _id: false, reported: true }
       , (err, data) => {
           if (err) return reject(err)
-          resolve(data)
+          resolve(data.reported)
         })
     })
   }

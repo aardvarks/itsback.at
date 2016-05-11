@@ -54,8 +54,8 @@ class Monitor {
     try {
       http.get(target, (res) => {
         res.on('data', () => {}) //  Do nothing with the data to free the socket.
-        var up = this.checkHealth(res.statusCode)
-        clients.forEach((client) => { client.callback(up) })
+        var state = this.checkHealth(res.statusCode)
+        clients.forEach((client) => { client.callback(state) })
       }).on('error', function () {
         clients.forEach((client) => { client.callback(false) })
       }).end()

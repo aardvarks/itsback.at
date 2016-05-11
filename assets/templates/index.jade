@@ -10,8 +10,12 @@ block content
         .icon.icon--arrow
           include ../../assets/build/images/arrow.svg
         //- input.button(type='submit' value='Get status')
-  div#result Result goes here
-  button.js-report-domain Report
+  //- Forgive me front enders, I just wanted to be able to see what was happening!
+  div#info-box
+    div#result(style='display:block') 
+    label.js-watching(style='display:block')
+    label.js-reported(style='display:block')
+    p.button.js-report-domain(style='display:block') Report
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js')
   script(src='/js/bundle.js')

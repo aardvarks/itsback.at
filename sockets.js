@@ -10,6 +10,7 @@ module.exports = (server) => {
     , domainClients = {}
     , db = new Database(dbUrl)
     , database = db.connect()
+    , reportedSockets = []
 
   function findDomain (inputUrl) {
     var testUrl = url.parse(inputUrl.domain)
@@ -23,10 +24,13 @@ module.exports = (server) => {
   }
 
   function removeClient (socket) {
-		Object.keys(domainClients).forEach((client) => {
-			domainClients[client].removeClient(socket.id)
-		})
-	}
+    Object.keys(domainClients).forEach((client) => {
+      domainClients[client].removeClient(socket.id)
+    })
+
+    var index = reportedSockets.indexOf(socket.id)
+    reportedSockets.splice(index, 1)
+  }
 
   io.sockets.on('connection', (socket) => {
     socket.emit('id', {'id': socket.id})
@@ -36,26 +40,25 @@ module.exports = (server) => {
     })
 
     socket.on('domainReport', (data) => {
-      console.log(domain)
       var domain = findDomain(data)
-
       if (domain == null) return
+      if (reportedSockets.indexOf(socket.id) > -1) return
 
       database.then(() => {
         db.addReport(domain)
       })
 
-      console.log(domainClients[domain])
       domainClients[domain].clients.forEach((client) => {
         io.to(client.id).emit('reported', domain)
       })
+
+      reportedSockets.push(socket.id)
     })
 
     socket.on('domainSubmit', (data) => {
       var domain = findDomain(data)
 
       if (domain == null) return
-
       removeClient(socket)
 
       if (!domainClients.hasOwnProperty(domain)) {
@@ -64,7 +67,19 @@ module.exports = (server) => {
       }
 
       domainClients[domain].addClient(socket.id, (state) => {
-        socket.emit('result', { 'state': state, 'domain': domain })
+        var watching = domainClients[domain].clients.length
+
+        database.then(() => {
+          db.findReport(domain).then((reported) => {
+            socket.emit('result',
+              { 'state': state
+              , 'domain': domain
+              , 'watching': watching
+              , 'reported': reported
+              }
+            )
+          })
+        })
       })
     })
 
