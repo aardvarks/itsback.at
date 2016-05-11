@@ -53,8 +53,22 @@ $urlInput.on('keydown', (e) => {
 })
 
 $body.on('itsback:change', (event, data) => {
-  $('.js-watching').text('Watching: ' + data.watching)
-  $('.js-reported').text('Reported: ' + data.reported)
+  if (data.watching === 1) {
+    data.watching = 'You are the only one watching! Aren\'t you special :P'
+  } else {
+    $('.js-watching').text(data.watching + 'people watching! You aren\'t alone! :D')
+  }
+
+  console.log(data.reported)
+  if (data.reported > 10) {
+    $('.js-reported').text('Lots of people have said this domain won\'t work with itsback.at, so you might want to go back to F5F5F5F5F5F5 :(')
+    $('.js-report-domain').hide()
+  } else if (data.reported > 1) {
+    $('.js-reported').text('A couple of people don\'t think itsback.at works with this domain :S')
+  } else {
+    $('.js-reported').text('')
+  }
+
   application.processResult(data.state)
   notification.notifyStatusChange(data, application.result)
   updateResult(data.state ? states.success : states.fail)
@@ -62,14 +76,14 @@ $body.on('itsback:change', (event, data) => {
 
 $body.on('itsback:checking', updateResult.bind(null, states.checking))
 
-$('.js-report-domain').toggle()
-
 $body.on('itsback:reported', () => {
-  $('.js-report-domain').toggle()
+  $('.js-report-domain').hide()
 })
 
+$('.js-report-domain').hide()
+
 $body.on('itsback:serverDomain', (event, domain) => {
-  $('.js-report-domain').toggle()
+  $('.js-report-domain').show()
   serverDomain = domain
   notification.setDomain(domain)
 })
