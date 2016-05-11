@@ -11,7 +11,8 @@ var $urlInput = $('.js-url-input')
   , Socket = require('./socket')
   , socket = new Socket(window.io)
   , Application = require('./application')
-  , application = new Application(document, socket, notification)
+  , application = new Application(window, socket, notification)
+  , serverDomain
 
 function updateResult (message) {
   $('#result').fadeOut('fast', () => {
@@ -31,6 +32,11 @@ $urlInput.bind('input propertychange', () => {
 })
 
 $('.js-url-submit').on('click', application.performFirstTest)
+
+$('.js-report-domain').on('click', () => {
+  console.log('click')
+  socket.reportDomain(serverDomain)
+})
 
 application.initialLoad((path) => {
   if (path) $('#domain').val(path)
@@ -55,4 +61,9 @@ $body.on('itsback:change', (event, data) => {
 
 $body.on('itsback:checking', updateResult.bind(null, states.checking))
 
-$body.on('itsback:serverDomain', notification.setDomain)
+$body.on('itsback:serverDomain', function (event, domain) {
+  // Display report button.
+  console.log(111, domain)
+  serverDomain = domain
+  notification.setDomain(domain)
+})

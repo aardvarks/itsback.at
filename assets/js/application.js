@@ -1,3 +1,5 @@
+'use strict'
+
 class Application {
   constructor (window, socket, notification) {
     this.window = window

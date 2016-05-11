@@ -1,3 +1,6 @@
+const Database = require('./database')
+const dbUrl = 'mongodb://localhost:27017/itsback'
+
 var socket = require('socket.io')
   , url = require('url')
   , Monitor = require('./monitor.js')
@@ -5,6 +8,8 @@ var socket = require('socket.io')
 module.exports = (server) => {
   var io = socket.listen(server)
     , domainClients = {}
+    , db = new Database(dbUrl)
+    , database = db.connect()
 
   function findDomain (inputUrl) {
     var testUrl = url.parse(inputUrl.domain)
@@ -30,6 +35,22 @@ module.exports = (server) => {
       socket.emit('serverDomain', { 'domain': findDomain(data) })
     })
 
+    socket.on('domainReport', (data) => {
+      console.log(domain)
+      var domain = findDomain(data)
+
+      if (domain == null) return
+
+      database.then(() => {
+        db.addReport(domain)
+      })
+
+      console.log(domainClients[domain])
+      domainClients[domain].clients.forEach((client) => {
+        io.to(client.id).emit('reported', domain)
+      })
+    })
+
     socket.on('domainSubmit', (data) => {
       var domain = findDomain(data)
 
@@ -46,6 +67,8 @@ module.exports = (server) => {
         socket.emit('result', { 'state': state, 'domain': domain })
       })
     })
+
+    socket.on('error', console.log)
 
     socket.on('disconnect', () => {
        removeClient(socket)
