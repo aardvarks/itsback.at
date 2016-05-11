@@ -1,5 +1,5 @@
 const Database = require('./database')
-const dbUrl = 'mongodb://localhost:27017/itsback'
+const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/itsback'
 
 var socket = require('socket.io')
   , url = require('url')

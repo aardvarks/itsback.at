@@ -1,7 +1,7 @@
 'use strict'
 
 var Database = require('../database')
-  , dbUrl = 'mongodb://localhost:27017/test'
+  , dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
   , assert = require('assert')
 
 describe('Database', () => {
