@@ -1,7 +1,5 @@
 # itsback.at
 
-This is a rebuild and completion of the [itsback.at](http://itsback.at) website. The original code can be found [here](https://github.com/bag-man/nodeup).
-
 The idea is to create a replacement for [isup.me](http://isup.me), that will alert users when the status of a site changes. 
 
 You can test out the site with this URL: http://alpha.itsback.at/upanddown.herokuapp.com
@@ -23,18 +21,18 @@ npm run watch
 ```
 
 ## To do
-- [ ] Refactor code to ES6 and node 4
+- [x] Refactor code to ES6 and node 4
 - [x] Setup Jade / Stylus
-- [ ] Setup mongodb
-- [ ] Test whole URL, include path and port
+- [x] Setup mongodb
+- [ ] Test ~~whole URL, include path and~~ port
 - [ ] Adjustable certainty (X successful attempts before declared up)
-- [ ] Display users watching domain feature
-- [ ] Report incorrect results 
+- [x] Display users watching domain feature
+- [x] Report incorrect results 
 - [ ] Working animation
 - [x] Desktop notitications
 - [ ] 100% test coverage
-- [ ] JSON API
-- [ ] Plaintext (command line) API
+- [ ] ~~JSON API~~
+- [ ] ~~Plaintext (command line) API~~
 
 ## License
 Copyright (C) 2016 Kenan Yusuf, Matthew Elphick, Owen Garland, Vaishal Parmar
@@ -52,3 +50,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
+## History
+This is a rebuild and completion of the [itsback.at](http://itsback.at) website. The original code can be found [here](https://github.com/bag-man/nodeup).
