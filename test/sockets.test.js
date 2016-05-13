@@ -36,11 +36,23 @@ describe('Sockets', () => {
     })
   })
 
+  it('should report domain', (done) => {
+    client.emit('domainSubmit', { domain: 'google.com' })
+    client.on('result', (data) => {
+      client.emit('domainReport', { domain: 'google.com' })
+      client.on('reported', (data) => {
+        assert.equal(data, 'google.com', 'clients not received report')
+        done()
+      })
+    })
+  })
+
   it('should submit a domain and get a result', (done) => {
     client.emit('domainSubmit', { domain: 'google.com/asdasd' })
     client.on('result', (data) => {
       assert.equal(data.domain, 'google.com', 'domain not found correctly')
       assert.equal(data.state, true, 'domain not found correctly')
+      assert.equal(data.watching, 1, 'clients not counted correctly')
       done()
     })
   })
