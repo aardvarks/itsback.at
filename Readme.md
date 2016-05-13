@@ -5,8 +5,9 @@ The idea is to create a replacement for [isup.me](http://isup.me), that will ale
 You can test out the site with this URL: http://alpha.itsback.at/upanddown.herokuapp.com
 
 [![Build Status](https://img.shields.io/travis/aardvarks/itsback.at.svg?style=flat-square)](https://travis-ci.org/aardvarks/itsback.at)
-[![Build Status](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
 [![Build Status](https://img.shields.io/codecov/c/github/aardvarks/itsback.at.svg?style=flat-square)](https://codecov.io/github/aardvarks/itsback.at)
+[![Build Status](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
+[![http://alpha.itsback.at/alpha.itsback.at](https://img.shields.io/badge/stability-probably-brightgreen.svg?style=flat-square)](http://alpha.itsback.at/alpha.itsback.at)
 
 ## Setup
 
@@ -30,9 +31,9 @@ npm run watch
 - [x] Report incorrect results 
 - [ ] Working animation
 - [x] Desktop notitications
-- [ ] 100% test coverage
-- [ ] ~~JSON API~~
-- [ ] ~~Plaintext (command line) API~~
+- [x] 100% test coverage
+- [x] ~~JSON API~~
+- [x] ~~Plaintext (command line) API~~
 
 ## License
 Copyright (C) 2016 Kenan Yusuf, Matthew Elphick, Owen Garland, Vaishal Parmar
