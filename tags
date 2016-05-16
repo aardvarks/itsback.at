@@ -1,0 +1,116 @@
+addClient	/home/oweng/Projects/itsback.at/monitor.js	/addClient/;"	f	lineno:18	namespace:Monitor.prototype	type:void function(?, ?)
+addReport	/home/oweng/Projects/itsback.at/database.js	/addReport/;"	f	lineno:23	namespace:Database.prototype	type:Promise function(?)
+addRoutes	/home/oweng/Projects/itsback.at/server.js	/addRoutes/;"	v	lineno:4
+agent	/home/oweng/Projects/itsback.at/monitor.js	/agent/;"	v	lineno:50	namespace:Monitor.prototype.checkDomain.target	type:boolean
+app	/home/oweng/Projects/itsback.at/server.js	/app/;"	v	lineno:3
+app	/home/oweng/Projects/itsback.at/test/sockets.test.js	/app/;"	v	lineno:2
+Application	/home/oweng/Projects/itsback.at/assets/js/application.js	/Application/;"	f	lineno:3	type:void function(?, ?, ?)
+Application	/home/oweng/Projects/itsback.at/assets/js/index.js	/Application/;"	v	lineno:13
+application	/home/oweng/Projects/itsback.at/assets/js/index.js	/application/;"	v	lineno:14
+assert	/home/oweng/Projects/itsback.at/test/database.test.js	/assert/;"	v	lineno:5
+assert	/home/oweng/Projects/itsback.at/test/monitor.test.js	/assert/;"	v	lineno:1
+assert	/home/oweng/Projects/itsback.at/test/sockets.test.js	/assert/;"	v	lineno:11
+attachSocket	/home/oweng/Projects/itsback.at/server.js	/attachSocket/;"	v	lineno:5
+attachSocket	/home/oweng/Projects/itsback.at/test/sockets.test.js	/attachSocket/;"	v	lineno:4
+$body	/home/oweng/Projects/itsback.at/assets/js/index.js	/\$body/;"	v	lineno:3
+callback	/home/oweng/Projects/itsback.at/monitor.js	/callback/;"	v	lineno:18	namespace:Monitor.prototype.addClient
+cb	/home/oweng/Projects/itsback.at/assets/js/application.js	/cb/;"	v	lineno:12	namespace:Application.prototype.initialLoad
+checkDomain	/home/oweng/Projects/itsback.at/monitor.js	/checkDomain/;"	f	lineno:43	namespace:Monitor.prototype	type:void function()
+checkHealth	/home/oweng/Projects/itsback.at/monitor.js	/checkHealth/;"	f	lineno:14	namespace:Monitor.prototype	type:boolean function(?)
+checking	/home/oweng/Projects/itsback.at/assets/js/index.js	/checking/;"	v	lineno:7	namespace:states
+client	/home/oweng/Projects/itsback.at/monitor.js	/client/;"	v	lineno:18	namespace:Monitor.prototype.addClient
+client	/home/oweng/Projects/itsback.at/monitor.js	/client/;"	v	lineno:26	namespace:Monitor.prototype.removeClient
+clients	/home/oweng/Projects/itsback.at/monitor.js	/clients/;"	v	lineno:44	namespace:Monitor.prototype.checkDomain	type:[?]
+code	/home/oweng/Projects/itsback.at/assets/js/index.js	/code/;"	v	lineno:24	namespace:enterPressed
+code	/home/oweng/Projects/itsback.at/monitor.js	/code/;"	v	lineno:14	namespace:Monitor.prototype.checkHealth
+connect	/home/oweng/Projects/itsback.at/database.js	/connect/;"	f	lineno:13	namespace:Database.prototype	type:Promise function()
+Database	/home/oweng/Projects/itsback.at/database.js	/Database/;"	f	lineno:5	type:!this function(?)
+Database	/home/oweng/Projects/itsback.at/sockets.js	/Database/;"	v	lineno:1
+Database	/home/oweng/Projects/itsback.at/test/database.test.js	/Database/;"	v	lineno:3
+data	/home/oweng/Projects/itsback.at/assets/js/notification.js	/data/;"	v	lineno:34	namespace:Notification.prototype.notifyStatusChange
+dbUrl	/home/oweng/Projects/itsback.at/sockets.js	/dbUrl/;"	v	lineno:2	type:string
+dbUrl	/home/oweng/Projects/itsback.at/test/database.test.js	/dbUrl/;"	v	lineno:4	type:string
+domainClients	/home/oweng/Projects/itsback.at/test/sockets.test.js	/domainClients/;"	v	lineno:6
+domain	/home/oweng/Projects/itsback.at/assets/js/notification.js	/domain/;"	v	lineno:14	namespace:Notification.prototype.setDomain
+domain	/home/oweng/Projects/itsback.at/assets/js/socket.js	/domain/;"	v	lineno:22	namespace:Socket.prototype.reportDomain
+domain	/home/oweng/Projects/itsback.at/assets/js/socket.js	/domain/;"	v	lineno:26	namespace:Socket.prototype.testDomain
+domain	/home/oweng/Projects/itsback.at/database.js	/domain/;"	v	lineno:23	namespace:Database.prototype.addReport
+domain	/home/oweng/Projects/itsback.at/database.js	/domain/;"	v	lineno:38	namespace:Database.prototype.findReport
+e	/home/oweng/Projects/itsback.at/assets/js/application.js	/e/;"	v	lineno:22	namespace:Application.prototype.performFirstTest
+e	/home/oweng/Projects/itsback.at/assets/js/index.js	/e/;"	v	lineno:23	namespace:enterPressed
+enterPressed	/home/oweng/Projects/itsback.at/assets/js/index.js	/enterPressed/;"	f	lineno:23	type:boolean function(?)
+err	/home/oweng/Projects/itsback.at/monitor.js	/err/;"	v	lineno:62	namespace:Monitor.prototype.checkDomain
+exists	/home/oweng/Projects/itsback.at/monitor.js	/exists/;"	v	lineno:19	namespace:Monitor.prototype.addClient	type:boolean
+express	/home/oweng/Projects/itsback.at/server.js	/express/;"	v	lineno:1
+express	/home/oweng/Projects/itsback.at/test/sockets.test.js	/express/;"	v	lineno:1
+fail	/home/oweng/Projects/itsback.at/assets/js/index.js	/fail/;"	v	lineno:6	namespace:states
+findReport	/home/oweng/Projects/itsback.at/database.js	/findReport/;"	f	lineno:38	namespace:Database.prototype	type:Promise function(?)
+getPermissions	/home/oweng/Projects/itsback.at/assets/js/notification.js	/getPermissions/;"	f	lineno:18	namespace:Notification.prototype	type:void function()
+headers	/home/oweng/Projects/itsback.at/monitor.js	/headers/;"	v	lineno:51	namespace:Monitor.prototype.checkDomain.target
+host	/home/oweng/Projects/itsback.at/monitor.js	/host/;"	v	lineno:46	namespace:Monitor.prototype.checkDomain.target
+href	/home/oweng/Projects/itsback.at/assets/js/application.js	/href/;"	v	lineno:33	namespace:Application.prototype.updateIcon.link	type:string
+http	/home/oweng/Projects/itsback.at/monitor.js	/http/;"	v	lineno:3
+initialLoad	/home/oweng/Projects/itsback.at/assets/js/application.js	/initialLoad/;"	f	lineno:12	namespace:Application.prototype	type:void function(?)
+io	/home/oweng/Projects/itsback.at/test/sockets.test.js	/io/;"	v	lineno:3
+link	/home/oweng/Projects/itsback.at/assets/js/application.js	/link/;"	v	lineno:30	namespace:Application.prototype.updateIcon
+logger	/home/oweng/Projects/itsback.at/server.js	/logger/;"	v	lineno:2
+log	/home/oweng/Projects/itsback.at/monitor.js	/log/;"	f	lineno:41	namespace:Monitor.prototype	type:void function()
+message	/home/oweng/Projects/itsback.at/assets/js/index.js	/message/;"	v	lineno:17	namespace:updateResult
+method	/home/oweng/Projects/itsback.at/monitor.js	/method/;"	v	lineno:49	namespace:Monitor.prototype.checkDomain.target	type:string
+MongoClient	/home/oweng/Projects/itsback.at/database.js	/MongoClient/;"	v	lineno:3
+Monitor	/home/oweng/Projects/itsback.at/monitor.js	/Monitor/;"	f	lineno:5	type:void function(?)
+Monitor	/home/oweng/Projects/itsback.at/sockets.js	/Monitor/;"	v	lineno:6
+Monitor	/home/oweng/Projects/itsback.at/test/monitor.test.js	/Monitor/;"	v	lineno:2
+noop	/home/oweng/Projects/itsback.at/test/monitor.test.js	/noop/;"	f	lineno:3	type:void function()
+notification	/home/oweng/Projects/itsback.at/assets/js/index.js	/notification/;"	v	lineno:10
+Notification	/home/oweng/Projects/itsback.at/assets/js/index.js	/Notification/;"	v	lineno:9
+Notification	/home/oweng/Projects/itsback.at/assets/js/notification.js	/Notification/;"	f	lineno:1	type:void function(?)
+notifyStatusChange	/home/oweng/Projects/itsback.at/assets/js/notification.js	/notifyStatusChange/;"	f	lineno:34	namespace:Notification.prototype	type:void function(?, ?)
+path	/home/oweng/Projects/itsback.at/assets/js/application.js	/path/;"	v	lineno:14	namespace:Application.prototype.initialLoad
+path	/home/oweng/Projects/itsback.at/monitor.js	/path/;"	v	lineno:48	namespace:Monitor.prototype.checkDomain.target	type:string
+path	/home/oweng/Projects/itsback.at/server.js	/path/;"	v	lineno:7
+path	/home/oweng/Projects/itsback.at/webpack.config.js	/path/;"	v	lineno:3
+path	/home/oweng/Projects/itsback.at/webpack-prod.config.js	/path/;"	v	lineno:3
+performFirstTest	/home/oweng/Projects/itsback.at/assets/js/application.js	/performFirstTest/;"	f	lineno:22	namespace:Application.prototype	type:void function(?)
+port	/home/oweng/Projects/itsback.at/monitor.js	/port/;"	v	lineno:47	namespace:Monitor.prototype.checkDomain.target	type:number
+port	/home/oweng/Projects/itsback.at/server.js	/port/;"	v	lineno:6	type:number
+port	/home/oweng/Projects/itsback.at/test/sockets.test.js	/port/;"	v	lineno:5	type:number
+processResult	/home/oweng/Projects/itsback.at/assets/js/application.js	/processResult/;"	f	lineno:37	namespace:Application.prototype	type:void function(?)
+prototype	/home/oweng/Projects/itsback.at/assets/js/application.js	/class Application \{/;"	v	lineno:3	namespace:Application
+prototype	/home/oweng/Projects/itsback.at/assets/js/notification.js	/class Notification \{/;"	v	lineno:1	namespace:Notification
+prototype	/home/oweng/Projects/itsback.at/assets/js/socket.js	/class Socket \{/;"	v	lineno:3	namespace:Socket
+prototype	/home/oweng/Projects/itsback.at/database.js	/class Database \{/;"	v	lineno:5	namespace:Database
+prototype	/home/oweng/Projects/itsback.at/monitor.js	/class Monitor \{/;"	v	lineno:5	namespace:Monitor
+refreshState	/home/oweng/Projects/itsback.at/assets/js/notification.js	/refreshState/;"	f	lineno:10	namespace:Notification.prototype	type:void function()
+rel	/home/oweng/Projects/itsback.at/assets/js/application.js	/rel/;"	v	lineno:32	namespace:Application.prototype.updateIcon.link	type:string
+removeClient	/home/oweng/Projects/itsback.at/monitor.js	/removeClient/;"	f	lineno:26	namespace:Monitor.prototype	type:void function(?)
+reportDomain	/home/oweng/Projects/itsback.at/assets/js/socket.js	/reportDomain/;"	f	lineno:22	namespace:Socket.prototype	type:void function(?)
+requestPermission	/home/oweng/Projects/itsback.at/assets/js/notification.js	/requestPermission/;"	f	lineno:30	namespace:Notification.prototype	type:void function()
+result	/home/oweng/Projects/itsback.at/assets/js/notification.js	/result/;"	v	lineno:34	namespace:Notification.prototype.notifyStatusChange
+serverDomain	/home/oweng/Projects/itsback.at/assets/js/index.js	/serverDomain/;"	v	lineno:15
+server	/home/oweng/Projects/itsback.at/server.js	/server/;"	v	lineno:13
+server	/home/oweng/Projects/itsback.at/test/sockets.test.js	/server/;"	v	lineno:7
+setDomain	/home/oweng/Projects/itsback.at/assets/js/notification.js	/setDomain/;"	f	lineno:14	namespace:Notification.prototype	type:void function(?)
+Socket	/home/oweng/Projects/itsback.at/assets/js/index.js	/Socket/;"	v	lineno:11
+socket	/home/oweng/Projects/itsback.at/assets/js/index.js	/socket/;"	v	lineno:12
+Socket	/home/oweng/Projects/itsback.at/assets/js/socket.js	/Socket/;"	f	lineno:3	type:void function(?)
+socket	/home/oweng/Projects/itsback.at/sockets.js	/socket/;"	v	lineno:4
+socketUrl	/home/oweng/Projects/itsback.at/test/sockets.test.js	/socketUrl/;"	v	lineno:10	type:string
+start	/home/oweng/Projects/itsback.at/monitor.js	/start/;"	f	lineno:31	namespace:Monitor.prototype	type:void function()
+state	/home/oweng/Projects/itsback.at/assets/js/application.js	/state/;"	v	lineno:29	namespace:Application.prototype.updateIcon
+state	/home/oweng/Projects/itsback.at/assets/js/application.js	/state/;"	v	lineno:37	namespace:Application.prototype.processResult
+states	/home/oweng/Projects/itsback.at/assets/js/index.js	/states/;"	v	lineno:4
+stop	/home/oweng/Projects/itsback.at/monitor.js	/stop/;"	f	lineno:36	namespace:Monitor.prototype	type:void function()
+success	/home/oweng/Projects/itsback.at/assets/js/index.js	/success/;"	v	lineno:5	namespace:states
+target	/home/oweng/Projects/itsback.at/monitor.js	/target/;"	v	lineno:45	namespace:Monitor.prototype.checkDomain
+template	/home/oweng/Projects/itsback.at/routes.js	/template/;"	v	lineno:1
+testDomain	/home/oweng/Projects/itsback.at/assets/js/socket.js	/testDomain/;"	f	lineno:26	namespace:Socket.prototype	type:void function(?)
+:t	/home/oweng/Projects/itsback.at/database.js	/\(resolve, reject\) => \{/;"	v	lineno:39	namespace:Promise	type:number
+type	/home/oweng/Projects/itsback.at/assets/js/application.js	/type/;"	v	lineno:31	namespace:Application.prototype.updateIcon.link	type:string
+updateIcon	/home/oweng/Projects/itsback.at/assets/js/application.js	/updateIcon/;"	f	lineno:29	namespace:Application.prototype	type:void function(?)
+updateResult	/home/oweng/Projects/itsback.at/assets/js/index.js	/updateResult/;"	f	lineno:17	type:void function(?)
+url	/home/oweng/Projects/itsback.at/sockets.js	/url/;"	v	lineno:5
+$urlInput	/home/oweng/Projects/itsback.at/assets/js/index.js	/\$urlInput/;"	v	lineno:1
+$urlSubmit	/home/oweng/Projects/itsback.at/assets/js/index.js	/\$urlSubmit/;"	v	lineno:2
+User-Agent	/home/oweng/Projects/itsback.at/monitor.js	/'User\-Agent'/;"	v	lineno:51	namespace:Monitor.prototype.checkDomain.target.headers	type:string
+webpack	/home/oweng/Projects/itsback.at/webpack-prod.config.js	/webpack/;"	v	lineno:4
