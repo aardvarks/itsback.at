@@ -19,19 +19,19 @@ class Socket {
     })
   }
 
-  reportDomain (domain) {
-    this.socket.emit('domainReport', { domain: domain })
+  reportDomain (url) {
+    this.socket.emit('domainReport', { url })
   }
 
-  testDomain (domain) {
-    this.socket.emit('domainValidate', { 'domain': domain, 'id': this.clientId })
+  testDomain (url) {
+    this.socket.emit('domainValidate', { url, 'id': this.clientId })
 
     this.socket.on('serverDomain', function (data) {
       $('body').trigger('itsback:serverDomain', data.domain)
     })
 
     $('body').trigger('itsback:checking')
-    this.socket.emit('domainSubmit', { 'domain': domain, 'id': this.clientId })
+    this.socket.emit('domainSubmit', { url, 'id': this.clientId })
   }
 }
 

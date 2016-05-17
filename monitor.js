@@ -3,8 +3,9 @@
 const http = require('follow-redirects').http
 
 class Monitor {
-  constructor (domain) {
+  constructor (domain, port) {
     this.domain = domain
+    this.port = port
     this.clients = []
     this.handler = {}
     this.started = false
@@ -44,7 +45,7 @@ class Monitor {
     let clients = this.clients
       , target =
         { host: this.domain
-        , port: 80
+        , port: this.port
         , path: '/'
         , method: 'GET'
         , agent: false
