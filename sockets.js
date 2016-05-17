@@ -1,19 +1,21 @@
+'use strict'
+
 const Database = require('./database')
 const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/itsback'
 
-var socket = require('socket.io')
+let socket = require('socket.io')
   , url = require('url')
   , Monitor = require('./monitor.js')
 
 module.exports = (server) => {
-  var io = socket.listen(server)
+  let io = socket.listen(server)
     , domainClients = {}
     , db = new Database(dbUrl)
     , database = db.connect()
     , reportedSockets = []
 
   function findDomain (inputUrl) {
-    var testUrl = url.parse(inputUrl.domain)
+    let testUrl = url.parse(inputUrl.domain)
 
     if (testUrl.protocol == null) {
       testUrl = url.parse('http://' + inputUrl.domain)
@@ -28,7 +30,7 @@ module.exports = (server) => {
       domainClients[client].removeClient(socket.id)
     })
 
-    var index = reportedSockets.indexOf(socket.id)
+    let index = reportedSockets.indexOf(socket.id)
     reportedSockets.splice(index, 1)
   }
 
@@ -40,7 +42,7 @@ module.exports = (server) => {
     })
 
     socket.on('domainReport', (data) => {
-      var domain = findDomain(data)
+      let domain = findDomain(data)
       if (domain == null) return
       if (reportedSockets.indexOf(socket.id) > -1) return
 
@@ -56,7 +58,7 @@ module.exports = (server) => {
     })
 
     socket.on('domainSubmit', (data) => {
-      var domain = findDomain(data)
+      let domain = findDomain(data)
 
       if (domain == null) return
       removeClient(socket)
@@ -67,7 +69,7 @@ module.exports = (server) => {
       }
 
       domainClients[domain].addClient(socket.id, (state) => {
-        var watching = domainClients[domain].clients.length
+        let watching = domainClients[domain].clients.length
 
         database.then(() => {
           db.findReport(domain).then((reported) => {

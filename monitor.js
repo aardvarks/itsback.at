@@ -16,7 +16,7 @@ class Monitor {
   }
 
   addClient (client, callback) {
-    var exists = this.clients.some((c) => { return c.id === client })
+    let exists = this.clients.some((c) => { return c.id === client })
     if (!exists) {
       this.clients.push({ id: client, callback: callback })
       if (!this.started) this.start()
@@ -41,7 +41,7 @@ class Monitor {
   log () {}
 
   checkDomain () {
-    var clients = this.clients
+    let clients = this.clients
       , target =
         { host: this.domain
         , port: 80
@@ -54,7 +54,7 @@ class Monitor {
     try {
       http.get(target, (res) => {
         res.on('data', () => {}) //  Do nothing with the data to free the socket.
-        var state = this.checkHealth(res.statusCode)
+        let state = this.checkHealth(res.statusCode)
         clients.forEach((client) => { client.callback(state) })
       }).on('error', function () {
         clients.forEach((client) => { client.callback(false) })

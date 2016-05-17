@@ -1,3 +1,5 @@
+'use strict'
+
 class Notification {
   constructor (window) {
     this.window = window

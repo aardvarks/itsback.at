@@ -11,7 +11,7 @@ class Application {
 
   initialLoad (cb) {
     if (this.window.location.pathname.substr(1).length) {
-      var path = this.window.location.pathname.substr(1).split('/')
+      let path = this.window.location.pathname.substr(1).split('/')
       this.socket.testDomain(path[0])
       cb(path[0])
     } else {
@@ -27,7 +27,7 @@ class Application {
   }
 
   updateIcon (state) {
-    var link = this.document.createElement('link')
+    let link = this.document.createElement('link')
     link.type = 'image/x-icon'
     link.rel = 'shortcut icon'
     link.href = '/assets/imgs/' + (state ? 'up' : 'down') + '.ico'
