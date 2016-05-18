@@ -2,7 +2,7 @@
 
 The idea is to create a replacement for [isup.me](http://isup.me), that will alert users when the status of a site changes. 
 
-You can test out the site with this URL: http://alpha.itsback.at/upanddown.herokuapp.com
+You can test out the site with [this URL](http://alpha.itsback.at/owen.cymru:1234), if all goes as expected you should see the sites status change every 30 seconds. 
 
 [![Build Status](https://img.shields.io/travis/aardvarks/itsback.at.svg?style=flat-square)](https://travis-ci.org/aardvarks/itsback.at)
 [![Build Status](https://img.shields.io/codecov/c/github/aardvarks/itsback.at.svg?style=flat-square)](https://codecov.io/github/aardvarks/itsback.at)
