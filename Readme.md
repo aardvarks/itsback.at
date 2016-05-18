@@ -25,8 +25,8 @@ npm run watch
 - [x] Refactor code to ES6 and node 4
 - [x] Setup Jade / Stylus
 - [x] Setup mongodb
-- [ ] Test ~~whole URL, include path and~~ port
-- [ ] Adjustable certainty (X successful attempts before declared up)
+- [x] Test ~~whole URL, include path and~~ port
+- [x] ~~Adjustable certainty (X successful attempts before declared up)~~
 - [x] Display users watching domain feature
 - [x] Report incorrect results 
 - [ ] Working animation
