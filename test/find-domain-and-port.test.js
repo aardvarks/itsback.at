@@ -12,6 +12,11 @@ const assert = require('assert')
       , { url: { url: 'google.com:3000/path' }, result: { domain: 'google.com', port: '3000' } }
       , { url: { url: 'google.com:3000' }, result: { domain: 'google.com', port: '3000' } }
       , { url: { url: '://google.com:3000' }, result: { domain: 'google.com', port: '3000' } }
+      , { url: { url: '://google.com' }, result: { domain: 'google.com', port: '80' } }
+      , { url: { url: 'ftp://google.com:3000' }, result: { domain: 'google.com', port: '3000' } }
+      , { url: { url: 'ftp://google.com' }, result: { domain: 'google.com', port: '80' } }
+      , { url: { url: 'ftp://google.com:3000/a/bunch?=of werid+stuff#to-see\/ifi:tb.reaks' }, result: { domain: 'google.com', port: '3000' } }
+      , { url: { url: 'google.com/a/bunch?=of werid+stuff#to-see\/ifi:tb.reaks' }, result: { domain: 'google.com', port: '80' } }
       ]
 
 describe('Test URL parsing logic', () => {
