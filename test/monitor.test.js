@@ -1,9 +1,9 @@
-var assert = require('assert')
-  , Monitor = require('../monitor')
-  , noop = () => {}
+const assert = require('assert')
+    , Monitor = require('../monitor')
+    , noop = () => {}
 
 describe('Monitor class', () => {
-  var monitor
+  let monitor
 
   beforeEach(() => {
     monitor = new Monitor('google.com')
@@ -37,6 +37,9 @@ describe('Monitor class', () => {
       assert.equal(monitor.clients[0].id, 'clientId', 'clientId not set correctly')
       assert.equal(monitor.clients.length, 1, 'duplicate client allowed')
       assert.equal(monitor.started, true, 'monitor not started')
+
+      monitor.addClient('clientId2', noop)
+      assert.equal(monitor.clients.length, 2, 'multiple clients not added')
       done()
     })
   })

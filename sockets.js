@@ -52,7 +52,7 @@ module.exports = (server) => {
       if (domain == null) return
       removeClient(socket)
 
-      if (!domainClients.hasOwnProperty(domain.domain)) {
+      if (!domainClients.hasOwnProperty(domain)) {
         domainClients[domain] = new Monitor(domain, port)
         domainClients[domain].start()
       }

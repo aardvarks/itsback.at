@@ -1,4 +1,4 @@
-var $urlInput = $('.js-url-input')
+let $urlInput = $('.js-url-input')
   , $urlSubmit = $('.js-url-submit')
   , $body = $('body')
   , states =
@@ -21,12 +21,12 @@ function updateResult (message) {
 }
 
 function enterPressed (e) {
-  var code = e.keyCode || e.which
+  let code = e.keyCode || e.which
   return code === 13
 }
 
 $urlInput.bind('input propertychange', () => {
-  var $urlInputValue = $urlInput.val()
+  let $urlInputValue = $urlInput.val()
     , applyState = ($urlInputValue === '') ? 'removeClass' : 'addClass'
   $urlInput[applyState]('not-empty')
 })
@@ -53,13 +53,13 @@ $urlInput.on('keydown', (e) => {
 })
 
 $body.on('itsback:change', (event, data) => {
+
   if (data.watching === 1) {
     data.watching = 'You are the only one watching! Aren\'t you special :P'
   } else {
     $('.js-watching').text(data.watching + ' people are watching! You aren\'t alone! :D')
   }
 
-  console.log(data.reported)
   if (data.reported > 10) {
     $('.js-reported').text('Lots of people have said this domain won\'t work with itsback.at, so you might want to go back to F5F5F5F5F5F5 :(')
     $('.js-report-domain').hide()

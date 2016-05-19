@@ -1,4 +1,4 @@
-var express = require('express')
+let express = require('express')
   , app = express()
   , io = require('socket.io-client')
   , attachSocket = require('../sockets')
@@ -11,7 +11,7 @@ var express = require('express')
   , assert = require('assert')
 
 describe('Sockets', () => {
-  var client
+  let client
 
   beforeEach(() => {
     client = io.connect(socketUrl, {})
@@ -66,6 +66,16 @@ describe('Sockets', () => {
         assert.equal(domainClients['google.com'].clients.length, 0, 'client not removed')
         done()
       }, 500)
+    })
+  })
+
+  it('should add multiple clients', (done) => {
+    let client2 = io.connect(socketUrl, {})
+    client.emit('domainSubmit', { url: 'google.com' })
+    client2.emit('domainSubmit', { url: 'google.com' })
+    client.on('result', (data) => {
+      assert.equal(domainClients['google.com'].clients.length, 2, 'client not added')
+      done()
     })
   })
 })
