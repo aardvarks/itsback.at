@@ -5,7 +5,7 @@ const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/itsback'
 
 let socket = require('socket.io')
   , Monitor = require('./monitor.js')
-  , findDomainAndPort = require('./lib/find-domain-and-port')
+  , findUrlKey = require('./lib/find-url-key')
 
 module.exports = (server) => {
   let io = socket.listen(server)
@@ -27,11 +27,12 @@ module.exports = (server) => {
     socket.emit('id', {'id': socket.id})
 
     socket.on('domainValidate', (data) => {
-      socket.emit('serverDomain', { 'domain': findDomainAndPort(data).domain })
+      let { domain, port } = findUrlKey(data)
+      socket.emit('serverDomain', { domain, port })
     })
 
     socket.on('domainReport', (data) => {
-      let domain = findDomainAndPort(data).domain
+      let { domain, port } = findUrlKey(data)
       if (domain == null) return
       if (reportedSockets.indexOf(socket.id) > -1) return
 
@@ -47,7 +48,7 @@ module.exports = (server) => {
     })
 
     socket.on('domainSubmit', (data) => {
-      let { domain, port } = findDomainAndPort(data)
+      let { domain, port } = findUrlKey(data)
 
       if (domain == null) return
       removeClient(socket)
