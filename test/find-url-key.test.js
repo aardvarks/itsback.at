@@ -21,7 +21,7 @@ const assert = require('assert')
 
 describe('Test URL parsing logic', () => {
   fixtures.forEach((fixture) => {
-    it('should return: ' + JSON.stringify(fixture.result), (done) => {
+    it('URL ' + fixture.url + ' should return key: ' + fixture.result, (done) => {
       assert.deepEqual(findUrlKey(fixture.url), fixture.result, 'wrong domain or port found')
       done()
     })
