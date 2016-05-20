@@ -11,8 +11,8 @@
     "watch-js": "./node_modules/.bin/webpack --watch",
     "clean": "rm -rf assets/build/css/ && rm -rf assets/build/js/ && mkdir -p assets/build/css && mkdir -p assets/build/js",
     "build": "npm run clean && npm run build-css && npm run build-js",
-    "watch": "npm run clean && npm run watch-css & npm run watch-js & nodemon --harmony-destructuring -e js,jade",
-    "start": "node --harmony-destructuring server",
+    "watch": "npm run clean && npm run watch-css & npm run watch-js & nodemon -e js,jade",
+    "start": "node server",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register && rm -rf coverage/",
     "travis": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register  && ./node_modules/.bin/codecov"
   },

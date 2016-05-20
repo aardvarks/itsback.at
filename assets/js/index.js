@@ -87,5 +87,5 @@ $('.js-report-domain').hide()
 $body.on('itsback:clientUrlKey', (event, urlKey) => {
   $('.js-report-domain').show()
   clientUrlKey = urlKey
-  notification.setDomain(urlKey.split(':')[0])
+  notification.setUrlKey(urlKey)
 })
