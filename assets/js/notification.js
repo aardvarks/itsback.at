@@ -5,7 +5,7 @@ class Notification {
     this.window = window
     this.notifications = false
     this.first = true
-    this.domain = ''
+    this.urlKey = ''
     this.getPermissions()
   }
 
@@ -13,8 +13,8 @@ class Notification {
     this.first = true
   }
 
-  setDomain (domain) {
-    this.domain = domain
+  setUrlKey (urlKey) {
+    this.urlKey = urlKey
   }
 
   getPermissions () {
@@ -33,10 +33,10 @@ class Notification {
     if (this.window.webkitNotifications) this.window.webkitNotifications.requestPermission()
   }
 
-  notifyStatusChange (data, result) {
-    if (this.domain === data.domain && result !== data.state && this.first === false) {
+  notifyStatusChange (data) {
+    if (this.urlKey === data.urlKey && this.first === false) {
       if (this.notifications) {
-        let notificationMessage = this.domain + (data.state ? ' is back up!' : ' has gone down!')
+        let notificationMessage = this.urlKey.split(':')[0] + (data.state ? ' is back up!' : ' has gone down!')
         this.notification = new this.window.Notification(notificationMessage)
       }
     }

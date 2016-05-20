@@ -34,12 +34,6 @@ class Application {
     this.document.getElementsByTagName('head')[0].appendChild(link)
   }
 
-  processResult (state) {
-    this.document.title = 'It\'s ' + (state ? 'back!' : 'down :(')
-    this.updateIcon(state)
-    if (this.result === state) return
-    this.result = state
-  }
 }
 
 module.exports = Application

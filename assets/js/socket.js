@@ -14,24 +14,23 @@ class Socket {
     })
 
     this.socket.on('result', function (data) {
-      $('body').trigger('itsback:change', data)
-        $('body').trigger('itsback:' + (data.state ? 'up' : 'down'), data)
+      $('body').trigger('itsback:update', data)
     })
   }
 
-  reportDomain (url) {
-    this.socket.emit('domainReport', { url })
+  reportDomain (clientUrlKey) {
+    this.socket.emit('domainReport', clientUrlKey)
   }
 
   testDomain (url) {
-    this.socket.emit('domainValidate', { url, 'id': this.clientId })
+    this.socket.emit('domainValidate', url)
 
-    this.socket.on('serverDomain', function (data) {
-      $('body').trigger('itsback:serverDomain', data.domain)
+    this.socket.on('serverUrlKey', function (urlKey) {
+      $('body').trigger('itsback:clientUrlKey', urlKey)
     })
 
     $('body').trigger('itsback:checking')
-    this.socket.emit('domainSubmit', { url, 'id': this.clientId })
+    this.socket.emit('domainSubmit', url)
   }
 }
 

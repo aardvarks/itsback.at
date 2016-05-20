@@ -12,7 +12,8 @@ let $urlInput = $('.js-url-input')
   , socket = new Socket(window.io)
   , Application = require('./application')
   , application = new Application(window, socket, notification)
-  , serverDomain
+  , clientState
+  , clientUrlKey
 
 function updateResult (message) {
   $('#result').fadeOut('fast', () => {
@@ -34,7 +35,7 @@ $urlInput.bind('input propertychange', () => {
 $('.js-url-submit').on('click', application.performFirstTest)
 
 $('.js-report-domain').on('click', () => {
-  socket.reportDomain(serverDomain)
+  socket.reportDomain(clientUrlKey)
 })
 
 application.initialLoad((path) => {
@@ -43,22 +44,25 @@ application.initialLoad((path) => {
 
 $urlSubmit.on('click', () => {
   $body.addClass('is-submitted')
+  clientState = null
 })
 
 $urlInput.on('keydown', (e) => {
   if (enterPressed(e)) {
     $body.addClass('is-submitted')
     application.performFirstTest(e)
+    clientState = null
   }
 })
 
-$body.on('itsback:change', (event, data) => {
+$body.on('itsback:update', (event, data) => {
 
   if (data.watching === 1) {
     data.watching = 'You are the only one watching! Aren\'t you special :P'
   } else {
-    $('.js-watching').text(data.watching + ' people are watching! You aren\'t alone! :D')
+    data.watching += ' people are watching! You aren\'t alone! :D'
   }
+  $('.js-watching').text(data.watching)
 
   if (data.reported > 10) {
     $('.js-reported').text('Lots of people have said this domain won\'t work with itsback.at, so you might want to go back to F5F5F5F5F5F5 :(')
@@ -69,21 +73,27 @@ $body.on('itsback:change', (event, data) => {
     $('.js-reported').text('')
   }
 
-  application.processResult(data.state)
-  notification.notifyStatusChange(data, application.result)
-  updateResult(data.state ? states.success : states.fail)
+  if (data.state !== clientState) {
+    clientState = data.state
+    $('body').trigger('itsback:' + (clientState ? 'up' : 'down'), data)
+    document.title = 'It\'s ' + (clientState ? 'back!' : 'down :(')
+    application.updateIcon(clientState)
+    notification.notifyStatusChange(data)
+    updateResult(data.state ? states.success : states.fail)
+  }
 })
 
 $body.on('itsback:checking', updateResult.bind(null, states.checking))
 
 $body.on('itsback:reported', () => {
-  $('.js-report-domain').hide()
+  // this needs some FE discussion. Currently the event happens to all clients, but can be be made for just the reporting client.
+  $('.js-report-domain').text('Someone just reported this domain isn\'t working :S')
 })
 
 $('.js-report-domain').hide()
 
-$body.on('itsback:serverDomain', (event, domain) => {
+$body.on('itsback:clientUrlKey', (event, urlKey) => {
   $('.js-report-domain').show()
-  serverDomain = domain
-  notification.setDomain(domain)
+  clientUrlKey = urlKey
+  notification.setUrlKey(urlKey)
 })

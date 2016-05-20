@@ -3,9 +3,9 @@
 const http = require('follow-redirects').http
 
 class Monitor {
-  constructor (domain, port) {
-    this.domain = domain
-    this.port = port
+  constructor (urlKey) {
+    this.domain = urlKey.split(':')[0]
+    this.port = urlKey.split(':')[1]
     this.clients = []
     this.handler = {}
     this.started = false
@@ -30,8 +30,8 @@ class Monitor {
   }
 
   start () {
-    this.checkDomain()
     this.started = true
+    this.checkDomain()
   }
 
   stop () {
@@ -43,8 +43,6 @@ class Monitor {
   triggerClientCallbacks (state) {
     this.clients.forEach((client) => { client.callback(state) })
   }
-
-  log () {}
 
   checkDomain () {
     let target =
@@ -74,8 +72,6 @@ class Monitor {
     this.handler = setTimeout(() => {
       this.checkDomain()
     }, this.tick)
-
-    this.log()
   }
 }
 

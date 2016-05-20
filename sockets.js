@@ -5,7 +5,7 @@ const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/itsback'
 
 let socket = require('socket.io')
   , Monitor = require('./monitor.js')
-  , findDomainAndPort = require('./lib/find-domain-and-port')
+  , findUrlKey = require('./lib/find-url-key')
 
 module.exports = (server) => {
   let io = socket.listen(server)
@@ -15,8 +15,12 @@ module.exports = (server) => {
     , reportedSockets = []
 
   function removeClient (socket) {
-    Object.keys(domainClients).forEach((client) => {
-      domainClients[client].removeClient(socket.id)
+    Object.keys(domainClients).forEach((domain) => {
+      domainClients[domain].removeClient(socket.id)
+
+      if (!domainClients[domain].started) {
+        delete domainClients[domain]
+      }
     })
 
     let index = reportedSockets.indexOf(socket.id)
@@ -26,45 +30,44 @@ module.exports = (server) => {
   io.sockets.on('connection', (socket) => {
     socket.emit('id', {'id': socket.id})
 
-    socket.on('domainValidate', (data) => {
-      socket.emit('serverDomain', { 'domain': findDomainAndPort(data).domain })
+    socket.on('domainValidate', (url) => {
+      socket.emit('serverUrlKey', findUrlKey(url))
     })
 
-    socket.on('domainReport', (data) => {
-      let domain = findDomainAndPort(data).domain
-      if (domain == null) return
+    socket.on('domainReport', (clientUrlKey) => {
+      let urlKey = findUrlKey(clientUrlKey)
+      if (urlKey === null) return
       if (reportedSockets.indexOf(socket.id) > -1) return
 
       database.then(() => {
-        db.addReport(domain)
+        db.addReport(urlKey)
       })
 
-      domainClients[domain].clients.forEach((client) => {
-        io.to(client.id).emit('reported', domain)
+      domainClients[urlKey].clients.forEach((client) => {
+        io.to(client.id).emit('reported', urlKey)
       })
 
       reportedSockets.push(socket.id)
     })
 
-    socket.on('domainSubmit', (data) => {
-      let { domain, port } = findDomainAndPort(data)
+    socket.on('domainSubmit', (url) => {
+      let urlKey = findUrlKey(url)
 
-      if (domain == null) return
+      if (urlKey === null) return
       removeClient(socket)
 
-      if (!domainClients.hasOwnProperty(domain)) {
-        domainClients[domain] = new Monitor(domain, port)
-        domainClients[domain].start()
+      if (!domainClients.hasOwnProperty(urlKey)) {
+        domainClients[urlKey] = new Monitor(urlKey)
       }
 
-      domainClients[domain].addClient(socket.id, (state) => {
-        let watching = domainClients[domain].clients.length
+      domainClients[urlKey].addClient(socket.id, (state) => {
+        let watching = domainClients[urlKey].clients.length
 
         database.then(() => {
-          db.findReport(domain).then((reported) => {
+          db.findReport(urlKey).then((reported) => {
             socket.emit('result',
               { state
-              , domain
+              , urlKey
               , watching
               , reported
               }
