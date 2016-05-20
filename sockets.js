@@ -58,7 +58,6 @@ module.exports = (server) => {
 
       if (!domainClients.hasOwnProperty(urlKey)) {
         domainClients[urlKey] = new Monitor(urlKey)
-        domainClients[urlKey].start()
       }
 
       domainClients[urlKey].addClient(socket.id, (state) => {

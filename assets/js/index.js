@@ -44,12 +44,14 @@ application.initialLoad((path) => {
 
 $urlSubmit.on('click', () => {
   $body.addClass('is-submitted')
+  clientState = null
 })
 
 $urlInput.on('keydown', (e) => {
   if (enterPressed(e)) {
     $body.addClass('is-submitted')
     application.performFirstTest(e)
+    clientState = null
   }
 })
 

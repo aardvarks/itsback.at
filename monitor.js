@@ -30,8 +30,8 @@ class Monitor {
   }
 
   start () {
-    this.checkDomain()
     this.started = true
+    this.checkDomain()
   }
 
   stop () {
