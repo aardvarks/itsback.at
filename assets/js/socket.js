@@ -14,8 +14,7 @@ class Socket {
     })
 
     this.socket.on('result', function (data) {
-      $('body').trigger('itsback:change', data)
-      $('body').trigger('itsback:' + (data.state ? 'up' : 'down'), data)
+      $('body').trigger('itsback:update', data)
     })
   }
 

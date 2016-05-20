@@ -12,6 +12,7 @@ let $urlInput = $('.js-url-input')
   , socket = new Socket(window.io)
   , Application = require('./application')
   , application = new Application(window, socket, notification)
+  , clientState
   , clientUrlKey
 
 function updateResult (message) {
@@ -52,7 +53,7 @@ $urlInput.on('keydown', (e) => {
   }
 })
 
-$body.on('itsback:change', (event, data) => {
+$body.on('itsback:update', (event, data) => {
 
   if (data.watching === 1) {
     data.watching = 'You are the only one watching! Aren\'t you special :P'
@@ -70,9 +71,14 @@ $body.on('itsback:change', (event, data) => {
     $('.js-reported').text('')
   }
 
-  application.processResult(data.state)
-  notification.notifyStatusChange(data, application.result)
-  updateResult(data.state ? states.success : states.fail)
+  if (data.state !== clientState) {
+    clientState = data.state
+    $('body').trigger('itsback:' + (clientState ? 'up' : 'down'), data)
+    document.title = 'It\'s ' + (clientState ? 'back!' : 'down :(')
+    application.updateIcon(clientState)
+    notification.notifyStatusChange(data)
+    updateResult(data.state ? states.success : states.fail)
+  }
 })
 
 $body.on('itsback:checking', updateResult.bind(null, states.checking))
