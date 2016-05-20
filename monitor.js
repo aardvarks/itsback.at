@@ -3,9 +3,9 @@
 const http = require('follow-redirects').http
 
 class Monitor {
-  constructor (domain, port) {
-    this.domain = domain
-    this.port = port
+  constructor (urlKey) {
+    this.domain = urlKey.split(':')[0]
+    this.port = urlKey.split(':')[1]
     this.clients = []
     this.handler = {}
     this.started = false

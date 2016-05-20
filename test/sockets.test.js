@@ -29,28 +29,28 @@ describe('Sockets', () => {
   })
 
   it('should vaildate domain', (done) => {
-    client.emit('domainValidate', { url: 'google.com/asdasd' })
-    client.on('serverDomain', (data) => {
-      assert.equal(data.domain, 'google.com', 'domain not found correctly')
+    client.emit('domainValidate', 'google.com/asdasd')
+    client.on('serverUrlKey', (data) => {
+      assert.equal(data, 'google.com:80', 'domain not found correctly')
       done()
     })
   })
 
   it('should report domain', (done) => {
-    client.emit('domainSubmit', { url: 'google.com' })
+    client.emit('domainSubmit', 'google.com')
     client.on('result', (data) => {
-      client.emit('domainReport', { url: 'google.com' })
+      client.emit('domainReport', 'google.com:80')
       client.on('reported', (data) => {
-        assert.equal(data, 'google.com', 'clients not received report')
+        assert.equal(data, 'google.com:80', 'clients not received report')
         done()
       })
     })
   })
 
   it('should submit a domain and get a result', (done) => {
-    client.emit('domainSubmit', { url: 'google.com/asdasd' })
+    client.emit('domainSubmit', 'google.com/asdasd')
     client.on('result', (data) => {
-      assert.equal(data.domain, 'google.com', 'domain not found correctly')
+      assert.equal(data.urlKey, 'google.com:80', 'domain not found correctly')
       assert.equal(data.state, true, 'domain not found correctly')
       assert.equal(data.watching, 1, 'clients not counted correctly')
       done()
@@ -58,12 +58,12 @@ describe('Sockets', () => {
   })
 
   it('should remove client from domains when disconnected', (done) => {
-    client.emit('domainSubmit', { url: 'google.com' })
+    client.emit('domainSubmit', 'google.com')
     client.on('result', (data) => {
-      assert.equal(domainClients['google.com'].clients.length, 1, 'client not added')
+      assert.equal(domainClients['google.com:80'].clients.length, 1, 'client not added')
       client.disconnect()
       setTimeout(() => {
-        assert.equal(domainClients['google.com'].clients.length, 0, 'client not removed')
+        assert.equal(domainClients['google.com:80'].clients.length, 0, 'client not removed')
         done()
       }, 500)
     })
@@ -71,10 +71,10 @@ describe('Sockets', () => {
 
   it('should add multiple clients', (done) => {
     let client2 = io.connect(socketUrl, {})
-    client.emit('domainSubmit', { url: 'google.com' })
-    client2.emit('domainSubmit', { url: 'google.com' })
+    client.emit('domainSubmit', 'google.com')
+    client2.emit('domainSubmit', 'google.com')
     client.on('result', (data) => {
-      assert.equal(domainClients['google.com'].clients.length, 2, 'client not added')
+      assert.equal(domainClients['google.com:80'].clients.length, 2, 'client not added')
       done()
     })
   })
