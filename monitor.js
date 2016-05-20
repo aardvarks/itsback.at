@@ -37,35 +37,44 @@ class Monitor {
   stop () {
     clearTimeout(this.handler)
     this.started = false
+    if (this.connection) this.connection.abort()
+  }
+
+  triggerClientCallbacks (state) {
+    this.clients.forEach((client) => { client.callback(state) })
   }
 
   log () {}
 
   checkDomain () {
-    let clients = this.clients
-      , target =
+    let target =
         { host: this.domain
         , port: this.port
         , path: '/'
         , method: 'GET'
         , agent: false
-        , headers: { 'User-Agent': 'Mozilla/5.0' }
+        , headers:
+          { 'User-Agent': 'Mozilla/5.0'
+          , 'Connection': 'close'
+          }
         }
 
-    try {
-      http.get(target, (res) => {
-        res.on('data', () => {}) //  Do nothing with the data to free the socket.
+    this.connection = http.get(target)
+      .on('response', (res) => {
         let state = this.checkHealth(res.statusCode)
-        clients.forEach((client) => { client.callback(state) })
-      }).on('error', function () {
-        clients.forEach((client) => { client.callback(false) })
-      }).end()
-    } catch (err) {
+        this.triggerClientCallbacks(state)
+      })
+      .on('error', this.triggerClientCallbacks.bind(this, false))
+      .setTimeout(this.tick, () => {
+        this.connection.abort()
+        this.triggerClientCallbacks(false)
+      })
+      .end()
 
-    }
     this.handler = setTimeout(() => {
       this.checkDomain()
     }, this.tick)
+
     this.log()
   }
 }
