@@ -38,7 +38,7 @@ describe('Sockets', () => {
 
   it('should report domain', (done) => {
     client.emit('domainSubmit', 'google.com')
-    client.on('result', (data) => {
+    client.on('result', () => {
       client.emit('domainReport', 'google.com:80')
       client.on('reported', (data) => {
         assert.equal(data, 'google.com:80', 'clients not received report')
@@ -59,7 +59,7 @@ describe('Sockets', () => {
 
   it('should remove client from domains when disconnected', (done) => {
     client.emit('domainSubmit', 'google.com')
-    client.on('result', (data) => {
+    client.on('result', () => {
       assert.equal(domainClients['google.com:80'].clients.length, 1, 'client not added')
       client.disconnect()
       setTimeout(() => {
@@ -73,7 +73,7 @@ describe('Sockets', () => {
     let client2 = io.connect(socketUrl, {})
     client.emit('domainSubmit', 'google.com')
     client2.emit('domainSubmit', 'google.com')
-    client.on('result', (data) => {
+    client.on('result', () => {
       assert.equal(domainClients['google.com:80'].clients.length, 2, 'client not added')
       done()
     })

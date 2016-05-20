@@ -1,4 +1,5 @@
-const assert = require('assert')
+const nock = require('nock')
+    , assert = require('assert')
     , Monitor = require('../monitor')
     , noop = () => {}
 
@@ -7,6 +8,10 @@ describe('Monitor class', () => {
 
   beforeEach(() => {
     monitor = new Monitor('google.com')
+  })
+
+  afterEach(() => {
+    nock.cleanAll()
   })
 
   describe('constructor', () => {
@@ -59,28 +64,42 @@ describe('Monitor class', () => {
       monitor.tick = 500
     })
 
-    function makeCallback (expected, second, done) {
+    function makeCallback (expected, done) {
       return function (up) {
         assert.equal(up, expected, 'incorrect result')
-        if (second) {
-          monitor.removeClient('clientId')
-          done()
-        }
-        second = true
+        monitor.removeClient('clientId')
+        done()
       }
     }
 
-    describe('up', () => {
-      it('should check a live domain', function (done) {
-        monitor.addClient('clientId', makeCallback(true, false, done))
-      })
+    it('should check a live domain', function (done) {
+      nock('http://google.com:80')
+        .filteringPath(() => { return '/' })
+        .get('/')
+        .reply(200)
+
+      monitor.addClient('clientId', makeCallback(true, done))
     })
 
-    describe('down', () => {
-      it('should check a dead domain', function (done) {
-        monitor.domain = 'madeupsitethatdoesnotexist.com'
-        monitor.addClient('clientId', makeCallback(false, false, done))
-      })
+    it('should check a dead domain', function (done) {
+      nock('http://madeupsitethatdoesnotexist.com:80')
+        .filteringPath(() => { return '/' })
+        .get('/')
+        .reply(400)
+
+      monitor.domain = 'madeupsitethatdoesnotexist.com'
+      monitor.addClient('clientId', makeCallback(false, done))
+    })
+
+    it('should timeout if a domain does not respond after 1 tick', function (done) {
+      nock('http://test.com:80')
+        .filteringPath(() => { return '/' })
+        .get('/')
+        .delay(10000)
+        .reply(200)
+
+      monitor.domain = 'test.com'
+      monitor.addClient('clientId', makeCallback(false, done))
     })
   })
 })
