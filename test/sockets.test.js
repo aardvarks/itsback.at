@@ -63,9 +63,9 @@ describe('Sockets', () => {
       assert.equal(domainClients['google.com:80'].clients.length, 1, 'client not added')
       client.disconnect()
       setTimeout(() => {
-        assert.equal(domainClients['google.com:80'].clients.length, 0, 'client not removed')
+        assert.equal(domainClients['google.com:80'], undefined, 'client not removed')
         done()
-      }, 500)
+      }, 100)
     })
   })
 

@@ -15,8 +15,12 @@ module.exports = (server) => {
     , reportedSockets = []
 
   function removeClient (socket) {
-    Object.keys(domainClients).forEach((client) => {
-      domainClients[client].removeClient(socket.id)
+    Object.keys(domainClients).forEach((domain) => {
+      domainClients[domain].removeClient(socket.id)
+
+      if (!domainClients[domain].started) {
+        delete domainClients[domain]
+      }
     })
 
     let index = reportedSockets.indexOf(socket.id)

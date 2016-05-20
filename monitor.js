@@ -39,8 +39,6 @@ class Monitor {
     this.started = false
   }
 
-  log () {}
-
   checkDomain () {
     let clients = this.clients
       , target =
@@ -66,7 +64,6 @@ class Monitor {
     this.handler = setTimeout(() => {
       this.checkDomain()
     }, this.tick)
-    this.log()
   }
 }
 
