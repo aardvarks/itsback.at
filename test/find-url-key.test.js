@@ -17,6 +17,8 @@ const assert = require('assert')
       , { url: 'ftp://google.com', result: 'google.com:80' }
       , { url: 'ftp://google.com:3000/a/bunch?=of werid+stuff#to-see/i\\fi:tb.reaks', result: 'google.com:3000' }
       , { url: 'google.com/a/bunch?=of werid+stuff#to-see/i\\fi:tb.reaks', result: 'google.com:80' }
+      , { url: '127.0.0.1', result: '127.0.0.1:80' }
+      , { url: '127.0.0.1:3000', result: '127.0.0.1:3000' }
       ]
 
 describe('Test URL parsing logic', () => {
