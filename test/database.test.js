@@ -22,11 +22,11 @@ describe('Database', () => {
     database.addReport('google.com')
       .then((data) => {
         assert.equal(data.value.domain, 'google.com', 'domain not inserted')
-        database.findReport('google.com')
-          .then((data) => {
-            assert.equal(data, 1, 'incorrect number of reports')
-            done()
-          })
+        return database.findReport('google.com')
+      })
+      .then((data) => {
+        assert.equal(data, 1, 'incorrect number of reports')
+        done()
       })
       .catch((err) => {
         done(err)

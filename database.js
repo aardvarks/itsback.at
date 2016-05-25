@@ -13,7 +13,7 @@ class Database {
   connect () {
     return new Promise((resolve, reject) => {
       MongoClient.connect(this.uri, (err, db) => {
-        if (err) return reject(err)
+        if (err) reject(err)
         this.db = db
         resolve(this)
       })
@@ -28,7 +28,7 @@ class Database {
       , { $inc: { reported: 1 } }
       , { new: true, upsert: true }
       , (err, data) => {
-          if (err) return reject(err)
+          if (err) reject(err)
           resolve(data)
         })
     })
@@ -41,7 +41,7 @@ class Database {
         { domain: domain }
       , { _id: false, reported: true }
       , (err, data) => {
-          if (err) return reject(err)
+          if (err) reject(err)
           if (data) {
             resolve(data.reported)
           } else {
