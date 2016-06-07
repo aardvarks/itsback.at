@@ -14,5 +14,5 @@ addRoutes(app)
 
 let server = app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`)
-  attachSocket(server)
+  attachSocket(app, server)
 })
