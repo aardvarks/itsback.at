@@ -7,12 +7,27 @@ let socket = require('socket.io')
   , Monitor = require('./monitor.js')
   , findUrlKey = require('./lib/find-url-key')
 
-module.exports = (server) => {
+module.exports = (app, server) => {
   let io = socket.listen(server)
     , domainClients = {}
     , db = new Database(dbUrl)
     , database = db.connect()
     , reportedSockets = []
+
+  app.on('users', (res) => {
+    let count = 0
+    Object.keys(domainClients).forEach((domain) => {
+      count += domainClients[domain].clients.length
+    })
+
+    res.json(
+      { 'labelText': 'users active'
+      , 'labelColour': '555555'
+      , 'valueText': count
+      , 'valueColour': '44cc11'
+      }
+    )
+  })
 
   function removeClient (socket) {
     Object.keys(domainClients).forEach((domain) => {

@@ -5,7 +5,7 @@ let express = require('express')
   , port = process.env.PORT || 3000
   , domainClients
   , server = app.listen(port, () => {
-      domainClients = attachSocket(server)
+      domainClients = attachSocket(app, server)
     })
   , socketUrl = 'http://localhost:' + port
   , assert = require('assert')
