@@ -9,7 +9,7 @@ You can test out the site with [this link](http://alpha.itsback.at/owen.cymru:12
 [![Dependencies](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
 [![Code Climate](https://img.shields.io/codeclimate/github/aardvarks/itsback.at.svg?style=flat-square)](https://codeclimate.com/github/aardvarks/itsback.at)
 [![http://alpha.itsback.at/alpha.itsback.at](https://img.shields.io/badge/stability-probably-brightgreen.svg?style=flat-square)](http://alpha.itsback.at/alpha.itsback.at)
-![Users Online](http://owen.cymru:5000/badge?api=alpha.itsback.at%2Fusers)
+![Users Online](http://itsback.at/badge?api=alpha.itsback.at%2Fusers)
 
 ## Features
 
