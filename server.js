@@ -5,7 +5,7 @@ let express = require('express')
   , app = express()
   , addRoutes = require('./routes')
   , attachSocket = require('./sockets')
-  , port = process.env.PORT || 3000
+  , port = process.env.PORT || 8082
   , path = require('path')
 
 app.use(logger('dev'))
