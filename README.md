@@ -2,14 +2,11 @@
 
 The idea is to create a replacement for [isup.me / downforeveryoneorjustme.com](http://isup.me), that will alert users when the status of a site changes, so that the user doesn't have to hit F5 waiting for the site to come back and the downed service only has to handle one request while the site is down rather than hundreds of users requesting the downed site. 
 
-You can test out the site with [this link](http://alpha.itsback.at/owen.cymru:1234), the site will go up and down every 30 seconds so you can see the service in action. 
-
 [![Build Status](https://img.shields.io/travis/aardvarks/itsback.at.svg?style=flat-square)](https://travis-ci.org/aardvarks/itsback.at)
 [![Coverage](https://img.shields.io/codecov/c/github/aardvarks/itsback.at.svg?style=flat-square)](https://codecov.io/github/aardvarks/itsback.at)
 [![Dependencies](https://img.shields.io/david/aardvarks/itsback.at.svg?style=flat-square)](https://david-dm.org/aardvarks/itsback.at)
 [![Code Climate](https://img.shields.io/codeclimate/github/aardvarks/itsback.at.svg?style=flat-square)](https://codeclimate.com/github/aardvarks/itsback.at)
 [![http://alpha.itsback.at/alpha.itsback.at](https://img.shields.io/badge/stability-probably-brightgreen.svg?style=flat-square)](http://alpha.itsback.at/alpha.itsback.at)
-![Users Online](http://apibadg.es/badge?api=alpha.itsback.at%2Fusers)
 
 ## Features
 
