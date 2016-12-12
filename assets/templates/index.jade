@@ -1,6 +1,11 @@
 extend default
 
 block content
+  div#info-box
+    div#result(style='display:block') 
+    label.js-watching(style='display:block')
+    label.js-reported(style='display:block')
+    p.button.js-report-domain(style='display:block') Report this site as not working with itsback.at
   form.domain-form(onsubmit='submit()')
     label.domain-form__inner
       input.domain-form__input.control.control--text.js-url-input(type='text' placeholder='example.com' required autofocus pattern='^((http|https):\\/\\/)?[a-zA-Z0-9-\\.]+\\.[a-z]{2,4}(:\\d+)?(\\/[a-zA-Z0-9]+)*(\\/?|#[a-zA-Z0-9]*)$' value=inputUrl title='Invalid URL')
@@ -11,11 +16,6 @@ block content
           include ../../assets/build/images/arrow.svg
         //- input.button(type='submit' value='Get status')
   //- Forgive me front enders, I just wanted to be able to see what was happening!
-  div#info-box
-    div#result(style='display:block') 
-    label.js-watching(style='display:block')
-    label.js-reported(style='display:block')
-    p.button.js-report-domain(style='display:block') Report this site as not working with itsback.at
   script(src='https://code.jquery.com/jquery-2.2.3.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js')
   script(src='/js/bundle.js')
